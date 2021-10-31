@@ -18,15 +18,16 @@ import javax.persistence.ManyToOne;
 public class ArtItem {
     @Id
     @GeneratedValue
-    private long artId;
-    private String artName;
-    private String artCategory;
+    private long id;
+    private String title;
     private String description;
-    private String ownerId;
-    private String artPhotoLink;
     private double price;
-//
-//    @ManyToOne
-//    private Order order;
+    private double rating;
+
+    // TODO: entity relationships
+    //private String sellerId;
+    //private String artPhotoLink;
+    //@ManyToOne
+    //private Order order;
 
 }
