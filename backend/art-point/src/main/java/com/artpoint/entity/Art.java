@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ArtItem {
+public class Art {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
