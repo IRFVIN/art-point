@@ -1,25 +1,28 @@
 package com.artpoint.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@IdClass(OrderArtId.class)
+@ToString(exclude = "order")
 public class OrderArt {
+
     @Id
-    @GeneratedValue
-    private long orderId;
-//
-//    @OneToOne
-//    User buyer;
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    @JsonBackReference
+    private Order order;
+
+    @Id
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    private Art art;
+    private  int quantity;
 }
