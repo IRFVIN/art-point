@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container, Typography } from "@mui/material";
+import { useState } from "react";
+
 
 function App() {
+
+  const [msg, setMsg] = useState('');
+
+  const url = "http://localhost:8080";
+  fetch(url).then(res => {
+    return res.text();
+  }).then(msg => {
+    console.log(msg);
+    setMsg(msg);
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Typography variant="h1">
+        {msg}
+      </Typography>
+    </Container>
   );
 }
 

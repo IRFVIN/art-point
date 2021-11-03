@@ -1,23 +1,21 @@
 package com.artpoint.controller;
 
+import java.io.File;
 import java.util.List;
 
 import com.artpoint.entity.Art;
 import com.artpoint.service.ArtService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 public class ArtController {
@@ -45,8 +43,30 @@ public class ArtController {
         )
     })
     @PostMapping("/art")
-    public void addArt(@RequestBody Art art) {
-        artService.addArt(art);
+    public String addArt(/*@RequestBody Art art, */@RequestParam("file") MultipartFile file) throws Exception {
+//        artService.addArt(art);
+
+        return saveFile(file, 150L);
+    }
+
+    public String saveFile(MultipartFile file, Long artId) throws Exception {
+        String dirPath = "/home/vineetkumar19/Desktop/ecom/Art Point/art-point/backend/art-point/src/main/resources/static/image/";
+
+        String fileName = artId.toString() + '.' + getFileExtension(file.getOriginalFilename());
+        file.transferTo(new File(dirPath + fileName));
+        return "file updated successfully";
+//        return ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/").path(fileName).toUriString();
+    }
+
+    String getFileExtension(String fileName) {
+        String extension = "";
+
+        int i = fileName.lastIndexOf('.');
+        if (i > 0) {
+            extension = fileName.substring(i+1);
+        }
+
+        return extension;
     }
 
     @Operation(summary = "Get art with specified ID ")

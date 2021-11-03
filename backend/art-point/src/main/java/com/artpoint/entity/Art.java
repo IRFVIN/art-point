@@ -23,13 +23,16 @@ public class Art {
     private String title;
     private String description;
     private double price;
-
-    // TODO: Entity relationships
-    /*
     private String artCategory;
-    private String ownerId;
-    private String artPhotoLink;
+//    private int quantity;
+
     @ManyToOne
-    private Order order;
-    */
+    private User owner;
+
+//    private String artCategory;
+//    private String ownerId;
+//    private String artPhotoLink;
+//    @ManyToOne
+//    private Order order;
+
 }
