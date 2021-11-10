@@ -1,5 +1,6 @@
 import { Container, Typography } from "@mui/material";
 import { useState } from "react";
+import DisplayArtItems from "./DisplayArtItems";
 
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
       <Typography variant="h1">
         {msg}
       </Typography>
+
+      <DisplayArtItems />
     </Container>
   );
 }

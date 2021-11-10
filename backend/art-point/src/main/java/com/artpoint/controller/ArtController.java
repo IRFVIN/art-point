@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ArtController {
     @Autowired
     private ArtService artService;
