@@ -20,8 +20,12 @@ function App() {
 
   return (
     <Container>
-      <Typography variant="h1">
+      <Typography variant="h2" color="primary" gutterBottom>
         {msg}
+      </Typography>
+
+      <Typography variant="h6" color="textSecondary" gutterBottom>
+        Discover Art
       </Typography>
 
       <DisplayArtItems />
