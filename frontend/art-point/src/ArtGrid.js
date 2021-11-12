@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import ArtItem from "./ArtItem";
 
-const DisplayArtItems = () => {
+const ArtGrid = () => {
 
     const [arts, setArts] = useState([]);
 
@@ -26,4 +26,4 @@ const DisplayArtItems = () => {
     );
 }
 
-export default DisplayArtItems;
+export default ArtGrid;
