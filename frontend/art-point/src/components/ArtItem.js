@@ -1,3 +1,4 @@
+import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
 const ArtItem = (props) => {
@@ -15,10 +16,29 @@ const ArtItem = (props) => {
         })
     }, [imageURL]);
     
-    return <div>
-        {props.art.title}
-        <img src={imgObjURL} alt={props.art.title} />
-    </div>;
+    return (
+        <Card sx={{ maxWidth: 345 }}>
+            <CardMedia
+            component="img"
+            height="140"
+            image={imgObjURL}
+            alt={props.art.title}
+            />
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                    {props.art.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    {props.art.description}
+                </Typography>
+            </CardContent>
+            <CardActions>
+                <Button size="small">Share</Button>
+                <Button size="small">Learn More</Button>
+            </CardActions>
+        </Card>
+    );
 }
 
 export default ArtItem;
+
