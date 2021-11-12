@@ -1,7 +1,6 @@
 import { Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import ArtGrid from "./ArtGrid";
-
+import ArtGrid from "./components/ArtGrid";
 
 function App() {
 
