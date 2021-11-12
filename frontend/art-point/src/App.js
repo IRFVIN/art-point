@@ -23,7 +23,7 @@ function App() {
         {msg}
       </Typography>
 
-      <Typography variant="h6" color="textSecondary" gutterBottom>
+      <Typography variant="h4" color="textSecondary" gutterBottom align="center">
         Discover Art
       </Typography>
 
