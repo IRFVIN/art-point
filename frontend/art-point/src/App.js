@@ -1,7 +1,6 @@
 import { Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import DisplayArtItems from "./DisplayArtItems";
-
+import ArtGrid from "./components/ArtGrid";
 
 function App() {
 
@@ -24,11 +23,11 @@ function App() {
         {msg}
       </Typography>
 
-      <Typography variant="h6" color="textSecondary" gutterBottom>
+      <Typography variant="h4" color="textSecondary" gutterBottom align="center">
         Discover Art
       </Typography>
 
-      <DisplayArtItems />
+      <ArtGrid />
       
     </Container>
   );
