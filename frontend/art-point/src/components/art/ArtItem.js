@@ -1,29 +1,29 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const ArtItem = (props) => {
-    // const [imgObjURL, setImgObjURL] = useState('');
+    const [imgObjURL, setImgObjURL] = useState('');
 
     const imageURL = "http://localhost:8080/images/" + props.art.id + ".png";
 
-    // useEffect(() => {
-    //     fetch(imageURL)
-    //         .then(res => res.blob())
-    //         .then(imgBlob => {
-    //             const url = URL.createObjectURL(imgBlob);
-    //             setImgObjURL(url);
-    //             console.log(url);
-    //         })
-    // }, [imageURL]);
+    useEffect(() => {
+        fetch(imageURL)
+            .then(res => res.blob())
+            .then(imgBlob => {
+                const url = URL.createObjectURL(imgBlob);
+                setImgObjURL(url);
+                console.log(url);
+            })
+    }, [imageURL]);
 
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
                 component="img"
                 height="140"
-                image={imageURL}
-                // image={imgObjURL}
+                // image={imageURL}
+                image={imgObjURL}
                 alt={props.art.title}
             />
             <CardContent>

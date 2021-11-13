@@ -1,10 +1,9 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-// import { useEffect, useState } from "react";
 
 const Art = () => {
-    // const [imgObjURL, setImgObjURL] = useState('');
+    const [imgObjURL, setImgObjURL] = useState('');
     const [art, setArt] = useState({});
     let params = useParams();
 
@@ -20,15 +19,15 @@ const Art = () => {
 
     const imageURL = "http://localhost:8080/images/" + params.artId + ".png";
 
-    // useEffect(() => {
-    //     fetch(imageURL)
-    //         .then(res => res.blob())
-    //         .then(imgBlob => {
-    //             const url = URL.createObjectURL(imgBlob);
-    //             setImgObjURL(url);
-    //             console.log(url);
-    //         })
-    // }, [imageURL]);
+    useEffect(() => {
+        fetch(imageURL)
+            .then(res => res.blob())
+            .then(imgBlob => {
+                const url = URL.createObjectURL(imgBlob);
+                setImgObjURL(url);
+                console.log(url);
+            })
+    }, [imageURL]);
 
     return (
         <Card sx={{
@@ -38,8 +37,8 @@ const Art = () => {
             <CardMedia
                 component="img"
                 // height="140"
-                image={imageURL}
-                // image={imgObjURL}
+                // image={imageURL}
+                image={imgObjURL}
                 alt={art.title}
             />
             <CardContent>
