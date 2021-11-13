@@ -1,6 +1,8 @@
 import { Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import ArtGrid from "./components/ArtGrid";
+import { Link, Outlet } from "react-router-dom";
+import ArtGrid from "./components/art/ArtGrid";
+import SignUp from "./components/authentication/SignUp";
 
 function App() {
 
@@ -15,7 +17,7 @@ function App() {
       setMsg(msg);
     })
   }, []);
-  
+
 
   return (
     <Container>
@@ -23,12 +25,18 @@ function App() {
         {msg}
       </Typography>
 
-      <Typography variant="h4" color="textSecondary" gutterBottom align="center">
-        Discover Art
-      </Typography>
 
-      <ArtGrid />
-      
+
+      <Link to="/signup">Sign Up</Link>
+      <Link to="/signin">Sign In</Link>
+      <Link to="/arts">
+        <Typography variant="h4" color="textSecondary" gutterBottom align="center">
+          Discover Art
+        </Typography>
+      </Link>
+
+      <Outlet />
+
     </Container>
   );
 }
