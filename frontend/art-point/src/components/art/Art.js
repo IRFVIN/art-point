@@ -7,15 +7,15 @@ const Art = () => {
     const [art, setArt] = useState({});
     let params = useParams();
 
-
+    const url = "http://localhost:8080/art/" + params.artId;
+    
     useEffect(() => {
-        const url = "http://localhost:8080/art/" + params.artId;
         fetch(url).then(res => res.json()).then(
             res => {
                 setArt(res);
             }
         );
-    }, []);
+    }, [url]);
 
     const imageURL = "http://localhost:8080/images/" + params.artId + ".png";
 
