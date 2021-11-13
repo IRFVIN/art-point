@@ -1,8 +1,6 @@
 import { Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import ArtGrid from "./components/art/ArtGrid";
-import SignUp from "./components/authentication/SignUp";
 
 function App() {
 
