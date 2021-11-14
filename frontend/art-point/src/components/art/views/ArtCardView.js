@@ -36,7 +36,7 @@ const ArtCardView = (props) => {
             </CardContent>
             <CardActions>
                 <Button size="small">
-                    <Link to={"/arts/" + props.art.id}>View</Link>
+                    <Link to={"/art/" + props.art.id}>View</Link>
                 </Button>
                 <Button size="small">Learn More</Button>
             </CardActions>
