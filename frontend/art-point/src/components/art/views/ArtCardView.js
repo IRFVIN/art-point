@@ -2,6 +2,9 @@ import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import PreviewIcon from '@mui/icons-material/Preview';
+
 const ArtCardView = (props) => {
     const [imgObjURL, setImgObjURL] = useState('');
 
@@ -35,10 +38,21 @@ const ArtCardView = (props) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">
-                    <Link to={"/art/" + props.art.id}>View</Link>
+                <Button
+                    component={Link} to={"/art/" + props.art.id}
+                    size="small" variant="outlined"
+                    startIcon={<PreviewIcon/>}
+                >
+                    View
                 </Button>
-                <Button size="small">Learn More</Button>
+                <Button
+                    component={Link} to={'#'}
+                    size="small" variant="contained"
+                    startIcon={<AddShoppingCartIcon/>}
+                    onClick={() => {console.log("add to cart: " + props.art.id);}}
+                >
+                    Add to Cart
+                </Button>
             </CardActions>
         </Card>
     );
