@@ -1,11 +1,23 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
-const ArtItem = (props) => {
+const ArtDetailView = () => {
     const [imgObjURL, setImgObjURL] = useState('');
+    const [art, setArt] = useState({});
+    let params = useParams();
 
-    const imageURL = "http://localhost:8080/images/" + props.art.id + ".png";
+    const url = "http://localhost:8080/art/" + params.artId;
+    
+    useEffect(() => {
+        fetch(url).then(res => res.json()).then(
+            res => {
+                setArt(res);
+            }
+        );
+    }, [url]);
+
+    const imageURL = "http://localhost:8080/images/" + params.artId + ".png";
 
     useEffect(() => {
         fetch(imageURL)
@@ -18,31 +30,32 @@ const ArtItem = (props) => {
     }, [imageURL]);
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{
+            maxWidth: 400,
+            margin: "auto"
+        }}>
             <CardMedia
                 component="img"
-                height="140"
+                // height="140"
                 // image={imageURL}
                 image={imgObjURL}
-                alt={props.art.title}
+                alt={art.title}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {props.art.title}
+                    {art.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {props.art.description}
+                    {art.description}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">
-                    <Link to={"/arts/" + props.art.id}>View</Link>
-                </Button>
-                <Button size="small">Learn More</Button>
+                <Button size="small">Buy Now</Button>
+                <Button size="small">Add to Cart</Button>
             </CardActions>
         </Card>
     );
 }
 
-export default ArtItem;
+export default ArtDetailView;
 
