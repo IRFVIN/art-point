@@ -8,7 +8,7 @@ import SignUp from './components/authentication/SignUp';
 import SignIn from './components/authentication/SignIn';
 import ArtGridView from './components/art/views/ArtGridView';
 import ArtDetailView from './components/art/views/ArtDetailView';
-
+import ArtCreateForm from './components/art/forms/ArtCreateForm';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,6 +18,7 @@ ReactDOM.render(
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/art" element={<ArtGridView />} />
+          <Route path="/art/create" element={<ArtCreateForm />} />
           <Route path="art/:artId" element={<ArtDetailView />} />
         </Route>
       </Routes>
