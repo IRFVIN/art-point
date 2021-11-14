@@ -6,8 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SignUp from './components/authentication/SignUp';
 import SignIn from './components/authentication/SignIn';
-import ArtGrid from './components/art/ArtGrid';
-import Art from './components/art/Art';
+import ArtGridView from './components/art/views/ArtGridView';
+import ArtDetailView from './components/art/views/ArtDetailView';
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,8 +17,8 @@ ReactDOM.render(
         <Route path="/" element={<App />}>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
-          <Route path="/arts" element={<ArtGrid />} />
-          <Route path="arts/:artId" element={<Art />} />
+          <Route path="/art" element={<ArtGridView />} />
+          <Route path="art/:artId" element={<ArtDetailView />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -27,7 +27,7 @@ function App() {
 
       <Link to="/signup">Sign Up</Link>
       <Link to="/signin">Sign In</Link>
-      <Link to="/arts">
+      <Link to="/art">
         <Typography variant="h4" color="textSecondary" gutterBottom align="center">
           Discover Art
         </Typography>
