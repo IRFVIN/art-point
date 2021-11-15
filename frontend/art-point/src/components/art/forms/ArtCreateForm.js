@@ -58,15 +58,46 @@ import { useForm } from 'react-hook-form';
 
 export default function ArtCreateForm() {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {
+    //console.log(data);
+
+    const artJSON = JSON.stringify({
+        'title': data.title,
+        'description': data.description,
+        'price': data.price,
+        'artCategory': 'test'
+    });
+
+    const artJSONblob = new Blob([artJSON], {
+        type: 'application/json'
+    });
+
+    let multipartFormData = new FormData();
+    multipartFormData.append('art', artJSONblob);
+    multipartFormData.append('image', data.image[0]);
+    //console.log(data.image[0]);
+
+    fetch('http://localhost:8080/art', {
+        method: 'POST',
+        body: multipartFormData
+    }).then(res => {
+
+    }).catch(err => {
+        console.log(err);
+    });
+  }
   console.log(errors);
   
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="text" placeholder="Title" {...register("Title", {required: true, maxLength: 100})} />
-      <textarea {...register("Description", {required: true, maxLength: 500})} />
-      <input type="number" placeholder="Price" {...register("Price", {required: true})} />
-
+    <form method="POST" encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
+      <input type="text" placeholder="Title" {...register("title", {required: true, maxLength: 100})} />
+      <br />
+      <textarea placeholder="Description" {...register("description", {required: true, maxLength: 500})} />
+      <br />
+      <input type="number" placeholder="Price" {...register("price", {required: true})} />
+      <br />
+      <input type="file" alt="Art Image" placeholder="Upload Art Image" {...register("image", {required: true})} />
+      <br />
       <input type="submit" />
     </form>
   );
