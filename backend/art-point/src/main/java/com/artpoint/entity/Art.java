@@ -24,6 +24,8 @@ public class Art {
     private String description;
     private double price;
     private String artCategory;
+    private String imageLocation;
+
 //    private int quantity;
 
     @ManyToOne
@@ -31,7 +33,6 @@ public class Art {
 
 //    private String artCategory;
 //    private String ownerId;
-//    private String artPhotoLink;
 //    @ManyToOne
 //    private Order order;
 
