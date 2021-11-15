@@ -1,21 +1,21 @@
 package com.artpoint.controller;
 
-import java.io.File;
 import java.util.List;
 
 import com.artpoint.entity.Art;
 import com.artpoint.service.ArtService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -40,34 +40,23 @@ public class ArtController {
     @ApiResponses(value = {
         @ApiResponse(
             responseCode = "200",
-            description = "Successfully added the art"
+            description = "Successfully added the art",
+            content = {@Content(mediaType = "multipart/form-data")}
         )
     })
-    @PostMapping("/art")
-    public String addArt(/*@RequestBody Art art, */@RequestParam("file") MultipartFile file) throws Exception {
-//        artService.addArt(art);
-
-        return saveFile(file, 150L);
+    @PostMapping(value = "/art", consumes = {
+        MediaType.APPLICATION_JSON_VALUE,
+        MediaType.MULTIPART_FORM_DATA_VALUE
+    })
+    public void addArt(@RequestPart("art") Art art, @RequestPart("image") MultipartFile imageFile) throws Exception {
+        Long newArtID = artService.addArt(art, imageFile.getBytes(), imageFile.getOriginalFilename());
+        System.out.println("added new art with ID: " + newArtID);
     }
 
-    public String saveFile(MultipartFile file, Long artId) throws Exception {
-        String dirPath = "/home/vineetkumar19/Desktop/ecom/Art Point/art-point/backend/art-point/src/main/resources/static/image/";
-
-        String fileName = artId.toString() + '.' + getFileExtension(file.getOriginalFilename());
-        file.transferTo(new File(dirPath + fileName));
-        return "file updated successfully";
-//        return ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/").path(fileName).toUriString();
-    }
-
-    String getFileExtension(String fileName) {
-        String extension = "";
-
-        int i = fileName.lastIndexOf('.');
-        if (i > 0) {
-            extension = fileName.substring(i+1);
-        }
-
-        return extension;
+    @GetMapping(value = "/image/{artID}", produces = MediaType.IMAGE_JPEG_VALUE)
+    FileSystemResource getImageResource(@PathVariable Long artID) throws Exception {
+        System.out.println("finding image for art ID: " + artID);
+        return artService.find(artID);
     }
 
     @Operation(summary = "Get art with specified ID ")

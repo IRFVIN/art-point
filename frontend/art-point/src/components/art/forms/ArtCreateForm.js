@@ -1,0 +1,104 @@
+/*
+import React from "react";
+import Select from "react-select";
+import { useForm, Controller } from "react-hook-form";
+import Input from "@mui/material/Input";
+import { TextField } from "@mui/material";
+
+const ArtCreateForm = () => {
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      firstName: '',
+      select: {}
+    }
+  });
+  const onSubmit = data => console.log(data);
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        name="firstName"
+        control={control}
+        render={({ field }) => <TextField id="outlined-basic" label="Outlined" variant="outlined" {...field} />}
+      />
+      <Controller
+        name="select"
+        control={control}
+        render={({ field }) => <Select 
+          {...field} 
+          options={[
+            { value: "chocolate", label: "Chocolate" },
+            { value: "strawberry", label: "Strawberry" },
+            { value: "vanilla", label: "Vanilla" }
+          ]} 
+        />}
+      />
+      <input type="submit" value="Submit" />
+    </form>
+  );
+};
+
+export default ArtCreateForm;
+*/
+
+
+/*
+Art{
+id	integer($int64)
+title	string
+description	string
+price	number($double)
+artCategory	string
+owner	User{...}
+}
+*/
+
+import React from 'react';
+import { useForm } from 'react-hook-form';
+
+export default function ArtCreateForm() {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = data => {
+    //console.log(data);
+
+    const artJSON = JSON.stringify({
+        'title': data.title,
+        'description': data.description,
+        'price': data.price,
+        'artCategory': 'test'
+    });
+
+    const artJSONblob = new Blob([artJSON], {
+        type: 'application/json'
+    });
+
+    let multipartFormData = new FormData();
+    multipartFormData.append('art', artJSONblob);
+    multipartFormData.append('image', data.image[0]);
+    //console.log(data.image[0]);
+
+    fetch('http://localhost:8080/art', {
+        method: 'POST',
+        body: multipartFormData
+    }).then(res => {
+
+    }).catch(err => {
+        console.log(err);
+    });
+  }
+  console.log(errors);
+  
+  return (
+    <form method="POST" encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
+      <input type="text" placeholder="Title" {...register("title", {required: true, maxLength: 100})} />
+      <br />
+      <textarea placeholder="Description" {...register("description", {required: true, maxLength: 500})} />
+      <br />
+      <input type="number" placeholder="Price" {...register("price", {required: true})} />
+      <br />
+      <input type="file" alt="Art Image" placeholder="Upload Art Image" {...register("image", {required: true})} />
+      <br />
+      <input type="submit" />
+    </form>
+  );
+}
