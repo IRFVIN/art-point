@@ -22,7 +22,8 @@ const ArtDetailView = () => {
 
     art.rating = 3.5;
 
-    const imageURL = "http://localhost:8080/images/" + params.artId + ".png";
+    //const imageURL = "http://localhost:8080/images/" + params.artId + ".png";
+    const imageURL = "http://localhost:8080/image/" + params.artId;
 
     useEffect(() => {
         fetch(imageURL)

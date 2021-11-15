@@ -8,7 +8,8 @@ import PreviewIcon from '@mui/icons-material/Preview';
 const ArtCardView = (props) => {
     const [imgObjURL, setImgObjURL] = useState('');
 
-    const imageURL = "http://localhost:8080/images/" + props.art.id + ".png";
+    //const imageURL = "http://localhost:8080/images/" + props.art.id + ".png";
+    const imageURL = "http://localhost:8080/image/" + props.art.id;
 
     useEffect(() => {
         fetch(imageURL)
