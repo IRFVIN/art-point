@@ -42,15 +42,15 @@ const ArtCardView = (props) => {
                 <Button
                     component={Link} to={"/art/" + props.art.id}
                     size="small" variant="outlined"
-                    startIcon={<PreviewIcon/>}
+                    startIcon={<PreviewIcon />}
                 >
                     View
                 </Button>
                 <Button
                     component={Link} to={'#'}
                     size="small" variant="contained"
-                    startIcon={<AddShoppingCartIcon/>}
-                    onClick={() => {console.log("add to cart: " + props.art.id);}}
+                    startIcon={<AddShoppingCartIcon />}
+                    onClick={() => { console.log("add to cart: " + props.art.id); }}
                 >
                     Add to Cart
                 </Button>

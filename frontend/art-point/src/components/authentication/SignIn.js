@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { Navigate } from 'react-router';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +14,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { login } from '../../store/store';
+import App from '../../App';
 
 function Copyright(props) {
     return (
@@ -28,14 +34,50 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function SignIn(props) {
+
+    const dispatch = useDispatch();
+
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+
+    if (isLoggedIn) {
+        console.log("logged in");
+        return (
+            <Navigate to="/" />
+            // <Routes>
+            //     <Route exact path="/" element={<App />} />
+            //     {/* <Route path="/" element={<Navigate replace to="/home" />} /> */}
+            // </Routes>
+        );
+    } else {
+        console.log("not logged in");
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         // eslint-disable-next-line no-console
-        console.log({
+        const userData = {
             email: data.get('email'),
             password: data.get('password'),
+        };
+
+        const url = "http://localhost:8080/authenticate";
+
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(userData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json()).then(res => {
+            if (res.status === 403) {
+                console.log("INVALID");
+            } else {
+                return res.jwtToken;
+            }
+        }).then(token => {
+            dispatch(login(token));
         });
     };
 
