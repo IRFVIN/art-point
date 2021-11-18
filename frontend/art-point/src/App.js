@@ -27,7 +27,7 @@ function App() {
       <ButtonAppBar />
       <Typography variant="h2" color="primary" gutterBottom>
         {msg}
-        {token}
+        {/* {token} */}
       </Typography>
 
 
