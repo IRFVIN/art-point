@@ -20,17 +20,20 @@ const authenticationSlice = createSlice({
     name: 'auth',
     initialState: {
         isLoggedIn: false,
-        token: null
+        token: null,
+        user: null
     },
     reducers: {
         login: (state, action) => {
-            console.log('called');
             state.isLoggedIn = true;
-            state.token = action.payload;
+            state.token = action.payload.jwtToken;
+            state.user = action.payload.user;
+            console.log(state.user);
         },
         logout: (state) => {
             state.isLoggedIn = false;
             state.token = null;
+            state.user = null;
         }
     }
 });

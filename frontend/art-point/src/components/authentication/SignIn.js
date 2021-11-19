@@ -74,10 +74,10 @@ export default function SignIn(props) {
             if (res.status === 403) {
                 console.log("INVALID");
             } else {
-                return res.jwtToken;
+                return res;
             }
-        }).then(token => {
-            dispatch(login(token));
+        }).then(res => {
+            dispatch(login(res));
         });
     };
 
