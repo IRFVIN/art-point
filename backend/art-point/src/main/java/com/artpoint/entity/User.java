@@ -29,4 +29,10 @@ public class User {
 
     @OneToMany(mappedBy = "owner")
     private List<Art> myArts;
+
+    @OneToMany(mappedBy = "sender")
+    private List<Chat> chatsTo;
+
+    @OneToMany(mappedBy = "receiver")
+    private List<Chat> chatsFrom;
 }

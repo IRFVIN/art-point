@@ -17,6 +17,7 @@ import store from './store/store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
+import ChatNotification from './components/chat/ChatNotification';
 
 let persistor = persistStore(store)
 
@@ -36,6 +37,7 @@ ReactDOM.render(
               <Route path="user/:userId" element={<UserDetailView />} />
               <Route path="/users" element={<UserGridView />} />
               <Route path="/profile" element={<UserProfileView />} />
+              <Route path="/notification" element={<ChatNotification />} />
             </Route>
           </Routes>
         </BrowserRouter>

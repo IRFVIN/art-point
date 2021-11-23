@@ -12,6 +12,7 @@ import { Navigate } from 'react-router';
 // import MenuIcon from '@mui/icons-material/Menu';
 // import { Link } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/store';
@@ -98,17 +99,33 @@ export default function ButtonAppBar() {
 
 
     if (isLoggedIn) {
-        content = (<IconButton
-            size="large"
-            edge="end"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-            onClick={handleProfileMenuOpen}
-            color="inherit"
-        >
-            <AccountCircle />
-        </IconButton>);
+        content = (<div>
+            <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                // aria-controls={menuId}
+                component={Link}
+                aria-haspopup="true"
+                to="/notification"
+                // onClick={handleProfileMenuOpen}
+                color="inherit"
+            >
+                <CircleNotificationsIcon />
+            </IconButton>
+
+            <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+            >
+                <AccountCircle />
+            </IconButton>
+        </div>);
     }
 
 
