@@ -30,7 +30,7 @@ public class Chat {
     String message;
 
     @CreationTimestamp
-    @Column(name="timestamp", nullable = false, updatable = false, insertable = false)
+//    @Column(name="timestamp", nullable = false, updatable = false, insertable = false)
     private Timestamp timestamp;
 
 }

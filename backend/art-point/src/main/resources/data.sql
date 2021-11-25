@@ -1,5 +1,5 @@
 insert into user (email, password, username, first_name, last_name, address, phone, rating) values ('test@gmail.com', 'test', 'hsiss0', 'Hank', 'Siss', '459 Meadow Valley Hill', '2262697715', 2.19);
-insert into user (email, password, username, first_name, last_name, address, phone, rating) values ('bberndtsson1@hexun.com', 'W6Q60oy', 'bberndtsson1', 'Barbee', 'Berndtsson', '27 Knutson Trail', '5736867686', 0.06);
+insert into user (email, password, username, first_name, last_name, address, phone, rating) values ('test2@gmail.com', 'test2', 'bberndtsson1', 'Barbee', 'Berndtsson', '27 Knutson Trail', '5736867686', 0.06);
 insert into user (email, password, username, first_name, last_name, address, phone, rating) values ('ahaldenby2@cocolog-nifty.com', 'IbcWqAk7iqL', 'ahaldenby2', 'Allard', 'Haldenby', '36891 Summit Circle', '5889862587', 2.26);
 insert into user (email, password, username, first_name, last_name, address, phone, rating) values ('klobbe3@cnet.com', 'FqsqSB1Ky', 'klobbe3', 'Kirsteni', 'Lobbe', '50311 Main Alley', '7827940970', 3.55);
 insert into user (email, password, username, first_name, last_name, address, phone, rating) values ('dlegrove4@samsung.com', 'VrfipQ', 'dlegrove4', 'Dill', 'Le Grove', '1087 Forster Court', '4391889557', 2.02);
@@ -200,6 +200,14 @@ insert into art (title, description, price, image_location) values ('Sisters, Th
 insert into art (title, description, price, image_location) values ('Gamera vs. Gyaos (Daikaijû kûchûsen: Gamera tai Gyaosu)', 'Trichomoniasis, unspecified', 1017.56, CONCAT(@PROJDIR, '/art-point/backend/art-point/target/classes/static/images/97.png'));
 insert into art (title, description, price, image_location) values ('Good-bye, My Lady', 'Mechanical loosening of internal right hip prosthetic joint, sequela', 4007.68, CONCAT(@PROJDIR, '/art-point/backend/art-point/target/classes/static/images/98.png'));
 insert into art (title, description, price, image_location) values ('Marley & Me: The Puppy Years', 'Rheumatoid lung disease with rheumatoid arthritis of right wrist', 7507.95, CONCAT(@PROJDIR, '/art-point/backend/art-point/target/classes/static/images/99.png'));
+
+update art
+set owner_id = 1
+where id between 1 and 50;
+
+update art
+set owner_id = 2
+where id between 51 and 100;
 
 insert into ORDER_TABLE (buyer_id) values (3);
 insert into ORDER_TABLE (buyer_id) values (2);

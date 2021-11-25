@@ -6,9 +6,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useSelector } from 'react-redux';
 
-export default function ChatFormDialog() {
+export default function ChatFormDialog(props) {
   const [open, setOpen] = React.useState(false);
+  const [msg, setMsg] = React.useState('bye');
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -16,6 +19,36 @@ export default function ChatFormDialog() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const sender = useSelector(state => state.auth.user);
+  const token = useSelector(state => state.auth.token);
+  const handleSubmit = () => {
+    console.log("hello " + msg);
+    const receiver = props.art;
+    const url = "http://localhost:8080/send";
+
+    const chatObj = {
+      sender: sender,
+      receiver: receiver,
+      message: msg
+    }
+
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(chatObj),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer " + token
+      }
+    });
+
+
+    handleClose();
+  }
+
+  const handleTextInputChange = event => {
+    setMsg(event.target.value);
   };
 
   return (
@@ -34,13 +67,15 @@ export default function ChatFormDialog() {
             margin="dense"
             id="name"
             label="Write your message here"
-            type="email"
+            type="text"
             fullWidth
             variant="standard"
+            value={msg}
+            onChange={handleTextInputChange}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Send Message</Button>
+          <Button onClick={handleSubmit}>Send Message</Button>
         </DialogActions>
       </Dialog>
     </div>

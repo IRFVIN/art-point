@@ -2,6 +2,8 @@ package com.artpoint.controller;
 
 import java.util.List;
 
+import com.artpoint.entity.Art;
+import com.artpoint.entity.Chat;
 import com.artpoint.entity.User;
 import com.artpoint.service.UserService;
 
@@ -84,6 +86,16 @@ public class UserController {
     @DeleteMapping("/user/{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
+    }
+
+    @GetMapping("/user/{id}/arts")
+    public List<Art> getUserArts(@PathVariable Long id) {
+        return userService.getUser(id).getMyArts();
+    }
+
+    @GetMapping("/user/{id}/notifications")
+    public List<Chat> getMyChats(@PathVariable Long id) {
+        return userService.getUser(id).getChatsFrom();
     }
 
 }

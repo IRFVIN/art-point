@@ -5,6 +5,8 @@ import com.artpoint.repository.ChatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ChatService {
 
@@ -14,7 +16,4 @@ public class ChatService {
     public Chat sendMessage(Chat chat) {
         return chatRepository.save(chat);
     }
-
-
-
 }

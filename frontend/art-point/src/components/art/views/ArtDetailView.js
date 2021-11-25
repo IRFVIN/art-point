@@ -52,7 +52,7 @@ const ArtDetailView = () => {
                         {art.title}
                     </Typography>
                     <Typography color="textSecondary">
-                        by {art.owner ? art.owner : "null"}
+                        by {art.owner ? art.owner.firstName : "null"}
                     </Typography>
 
                     <Rating name="read-only" value={art.rating} precision={0.5} readOnly />
@@ -77,7 +77,7 @@ const ArtDetailView = () => {
                         Add to Cart
                     </Button> */}
 
-                    <ChatFormDialog />
+                    <ChatFormDialog art={art} />
 
                 </Grid>
             </Grid>

@@ -1,5 +1,6 @@
 package com.artpoint.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,6 +30,7 @@ public class Art {
 //    private int quantity;
 
     @ManyToOne
+//    @JsonBackReference
     private User owner;
 
 //    private String artCategory;
