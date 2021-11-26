@@ -95,7 +95,7 @@ const ArtDetailView = () => {
                     </Button> */}
 
                         {showOPtions ? <ArtDeleteDialogForm /> : <ChatFormDialog art={art} />}
-                        {showOPtions ? <ArtEditDialogForm /> : null}
+                        {showOPtions ? <ArtEditDialogForm art={art} /> : null}
                     </Grid>
                 </Grid>
             </Box>
