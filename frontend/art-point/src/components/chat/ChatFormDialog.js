@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 
 export default function ChatFormDialog(props) {
   const [open, setOpen] = React.useState(false);
-  const [msg, setMsg] = React.useState('bye');
+  const [msg, setMsg] = React.useState('');
 
 
   const handleClickOpen = () => {
@@ -45,6 +45,7 @@ export default function ChatFormDialog(props) {
 
 
     handleClose();
+    setMsg('');
   }
 
   const handleTextInputChange = event => {

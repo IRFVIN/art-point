@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import PreviewIcon from '@mui/icons-material/Preview';
+import { useSelector } from "react-redux";
+import ArtDeleteDialogForm from "../forms/ArtDeleteDialogForm";
+import ArtEditDialogForm from "../forms/ArtEditDialogForm";
 
 const ArtCardView = (props) => {
     const [imgObjURL, setImgObjURL] = useState('');
@@ -20,6 +23,34 @@ const ArtCardView = (props) => {
                 console.log(url);
             })
     }, [imageURL]);
+
+    // let editDeleteOptions = null;
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+    const userId = useSelector(state => state.auth.user.id);
+    const artOwnerId = props.art.owner.id;
+
+    const showOPtions = isLoggedIn && userId === artOwnerId;
+
+    // if (isLoggedIn && userId === artOwnerId) {
+    //     editDeleteOptions = <div>
+    //         <Button
+    //             component={Link} to={'#'}
+    //             size="small" variant="contained"
+    //             startIcon={<AddShoppingCartIcon />}
+    //             onClick={() => { console.log("add to cart: " + props.art.id); }}
+    //         >
+    //             Edit
+    //         </Button>
+    //         <Button
+    //             component={Link} to={'#'}
+    //             size="small" variant="contained"
+    //             startIcon={<AddShoppingCartIcon />}
+    //             onClick={() => { console.log("add to cart: " + props.art.id); }}
+    //         >
+    //             Delete
+    //         </Button>
+    //     </div>
+    // }
 
     return (
         <Card sx={{ maxWidth: 345 }}>
@@ -46,14 +77,8 @@ const ArtCardView = (props) => {
                 >
                     View
                 </Button>
-                <Button
-                    component={Link} to={'#'}
-                    size="small" variant="contained"
-                    startIcon={<AddShoppingCartIcon />}
-                    onClick={() => { console.log("add to cart: " + props.art.id); }}
-                >
-                    Add to Cart
-                </Button>
+                {showOPtions ? <ArtDeleteDialogForm /> : null}
+                {showOPtions ? <ArtEditDialogForm /> : null}
             </CardActions>
         </Card>
     );

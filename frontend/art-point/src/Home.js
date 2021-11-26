@@ -1,5 +1,7 @@
 import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import UserGridView from "./components/user/views/UserGridView";
 
 const Home = () => {
 
@@ -17,10 +19,19 @@ const Home = () => {
     }, []);
 
     return (
-        <Typography variant="h2" color="primary" gutterBottom>
-            {msg}
-            {/* {token} */}
-        </Typography>
+        <div>
+            <Typography variant="h2" color="primary" gutterBottom>
+                {msg}
+                {/* {token} */}
+            </Typography>
+
+            <Typography variant="h3"
+                component={Link}
+                to="/users"
+            >
+                All Sellers
+            </Typography>
+        </div>
     );
 }
 

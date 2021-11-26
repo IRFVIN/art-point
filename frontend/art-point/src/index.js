@@ -18,6 +18,8 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 import ChatNotification from './components/chat/ChatNotification';
+import UserArts from './components/user/views/UserArts';
+import AccountSettings from './components/user/views/AccountSettings';
 
 let persistor = persistStore(store)
 
@@ -38,6 +40,8 @@ ReactDOM.render(
               <Route path="/users" element={<UserGridView />} />
               <Route path="/profile" element={<UserProfileView />} />
               <Route path="/notification" element={<ChatNotification />} />
+              <Route path="/user/arts" element={<UserArts />} />
+              <Route path="/setting" element={<AccountSettings />} />
             </Route>
           </Routes>
         </BrowserRouter>

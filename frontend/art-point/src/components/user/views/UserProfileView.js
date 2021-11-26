@@ -16,6 +16,7 @@ import SendIcon from '@mui/icons-material/Send';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import StarBorder from '@mui/icons-material/StarBorder';
+import { Link } from "react-router-dom";
 
 
 const UserProfileView = () => {
@@ -45,19 +46,29 @@ const UserProfileView = () => {
                 sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
                 component="nav"
             >
-                <ListItemButton>
+                <ListItemButton
+                    component={Link}
+                    to="/user/arts"
+                >
                     <ListItemIcon>
                         <SendIcon />
                     </ListItemIcon>
                     <ListItemText primary="Your Arts" />
                 </ListItemButton>
-                <ListItemButton>
+                <ListItemButton
+                    component={Link}
+                    to="/art/create"
+                >
                     <ListItemIcon>
                         <DraftsIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Your Orders" />
+                    <ListItemText primary="Add Art Item" />
                 </ListItemButton>
-                <ListItemButton>
+
+                <ListItemButton
+                    component={Link}
+                    to="/setting"
+                >
                     <ListItemIcon>
                         <DraftsIcon />
                     </ListItemIcon>

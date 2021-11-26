@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { Link } from "react-router-dom";
 
 const UserDetailView = () => {
     const [user, setUser] = useState(null);
@@ -85,7 +86,8 @@ const UserDetailView = () => {
                         //component={Link} to={'#'}
                         size="small" variant="contained"
                         startIcon={<AddShoppingCartIcon />}
-                        onClick={() => { console.log("add to cart: " + user.id); }}
+                        component={Link}
+                        to="/user/arts"
                     >
                         See My Arts
                     </Button>

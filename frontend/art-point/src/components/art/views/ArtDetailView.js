@@ -2,9 +2,12 @@ import { Button, CardMedia, Grid, Rating, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { useSelector } from "react-redux";
 
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ChatFormDialog from "../../chat/ChatFormDialog";
+import ArtDeleteDialogForm from "../forms/ArtDeleteDialogForm";
+import ArtEditDialogForm from "../forms/ArtEditDialogForm";
 
 const ArtDetailView = () => {
     const [imgObjURL, setImgObjURL] = useState('');
@@ -21,9 +24,6 @@ const ArtDetailView = () => {
         );
     }, [url]);
 
-    art.rating = 3.5;
-
-    //const imageURL = "http://localhost:8080/images/" + params.artId + ".png";
     const imageURL = "http://localhost:8080/image/" + params.artId;
 
     useEffect(() => {
@@ -36,39 +36,56 @@ const ArtDetailView = () => {
             })
     }, [imageURL]);
 
+    // art.rating = 3.5;
 
-    return (
-        <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={3}>
-                <Grid item md>
-                    <CardMedia
-                        component="img"
-                        image={imgObjURL}
-                        alt={art.title}
-                    />
-                </Grid>
-                <Grid item md>
-                    <Typography variant="h4" color="primary">
-                        {art.title}
-                    </Typography>
-                    <Typography color="textSecondary">
-                        by {art.owner ? art.owner.firstName : "null"}
-                    </Typography>
+    //const imageURL = "http://localhost:8080/images/" + params.artId + ".png";
 
-                    <Rating name="read-only" value={art.rating} precision={0.5} readOnly />
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+    const userId = useSelector(state => state.auth.user.id);
 
-                    <Typography variant="h6" color="textSecondary">
-                        Description
-                    </Typography>
-                    <Typography color="textPrimary">
-                        {art.description}
-                    </Typography>
+    if (!art['id']) {
+        return <div>ART NOT FOUND</div>
+    }
+    else {
 
-                    <Typography style={{ marginTop: 10 }} variant="h6" color="textSecondary">
-                        Price: &#8377;{art.price}
-                    </Typography>
+        let showOPtions = false;
 
-                    {/* <Button style={{ marginTop: 10 }}
+        const artOwnerId = art.owner.id;
+
+        showOPtions = isLoggedIn && userId === artOwnerId;
+
+        return (
+            <Box sx={{ flexGrow: 1 }}>
+                <Grid container spacing={3}>
+                    <Grid item md>
+                        <CardMedia
+                            component="img"
+                            image={imgObjURL}
+                            alt={art.title}
+                        />
+                    </Grid>
+                    <Grid item md>
+                        <Typography variant="h4" color="primary">
+                            {art.title}
+                        </Typography>
+                        <Typography color="textSecondary">
+                            by {art.owner ? art.owner.firstName : "null"}
+                        </Typography>
+
+                        <Rating name="read-only" value={art.rating} precision={0.5} readOnly />
+
+                        <Typography variant="h6" color="textSecondary">
+                            Description
+                        </Typography>
+                        <Typography color="textPrimary">
+                            {art.description}
+                        </Typography>
+
+                        <Typography style={{ marginTop: 10 }} variant="h6" color="textSecondary">
+                            Price: &#8377;{art.price}
+                        </Typography>
+
+                        {/* <Button style={{ marginTop: 10 }}
                         //component={Link} to={'#'}
                         size="small" variant="contained"
                         startIcon={<AddShoppingCartIcon />}
@@ -77,13 +94,14 @@ const ArtDetailView = () => {
                         Add to Cart
                     </Button> */}
 
-                    <ChatFormDialog art={art} />
-
+                        {showOPtions ? <ArtDeleteDialogForm /> : <ChatFormDialog art={art} />}
+                        {showOPtions ? <ArtEditDialogForm /> : null}
+                    </Grid>
                 </Grid>
-            </Grid>
-        </Box>
+            </Box>
 
-    );
+        );
+    }
 }
 
 export default ArtDetailView;
