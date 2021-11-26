@@ -26,7 +26,12 @@ const ArtCardView = (props) => {
 
     // let editDeleteOptions = null;
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-    const userId = useSelector(state => state.auth.user.id);
+    let userId = null;
+
+    const user = useSelector(state => state.auth.user);
+    if (user) {
+        userId = user.id;
+    }
     const artOwnerId = props.art.owner.id;
 
     const showOPtions = isLoggedIn && userId === artOwnerId;
@@ -77,8 +82,8 @@ const ArtCardView = (props) => {
                 >
                     View
                 </Button>
-                {showOPtions ? <ArtDeleteDialogForm /> : null}
-                {showOPtions ? <ArtEditDialogForm /> : null}
+                {showOPtions ? <ArtDeleteDialogForm art={props.art} /> : null}
+                {showOPtions ? <ArtEditDialogForm art={props.art} /> : null}
             </CardActions>
         </Card>
     );

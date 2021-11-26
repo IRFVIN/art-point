@@ -10,7 +10,6 @@ import { useSelector } from 'react-redux';
 
 export default function ArtDeleteDialogForm(props) {
     const [open, setOpen] = React.useState(false);
-    const [msg, setMsg] = React.useState('');
 
 
     const handleClickOpen = () => {
@@ -24,40 +23,33 @@ export default function ArtDeleteDialogForm(props) {
     const sender = useSelector(state => state.auth.user);
     const token = useSelector(state => state.auth.token);
     const handleSubmit = () => {
-        console.log("hello " + msg);
-        const receiver = props.art;
-        const url = "http://localhost:8080/send";
 
-        const chatObj = {
-            sender: sender,
-            receiver: receiver,
-            message: msg
-        }
+        const url = "http://localhost:8080/art/" + props.art.id;
+
+        console.log("deleted");
 
         fetch(url, {
-            method: "POST",
-            body: JSON.stringify(chatObj),
+            method: "DELETE",
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': "Bearer " + token
             }
         });
 
 
         handleClose();
-        setMsg('');
     }
 
-    const handleTextInputChange = event => {
-        setMsg(event.target.value);
-    };
+
 
     return (
         <div>
             <Button variant="outlined" onClick={handleClickOpen}>
                 Delete
             </Button>
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog
+                component="form"
+                onSubmit={handleSubmit}
+                open={open} onClose={handleClose}>
                 <DialogTitle>Write a message to seller</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -66,8 +58,8 @@ export default function ArtDeleteDialogForm(props) {
 
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleSubmit}>Cancel</Button>
-                    <Button onClick={handleSubmit}>Delte</Button>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button type="submit">Delete</Button>
                 </DialogActions>
             </Dialog>
         </div>

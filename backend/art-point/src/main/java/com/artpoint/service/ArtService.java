@@ -46,7 +46,12 @@ public class ArtService {
     }
 
 
-    public void updateArt(long id, Art art) {
+    public void updateArt(long id, Art updatedArt) {
+        Art art = artRepository.findById(id).get();
+        art.setTitle(updatedArt.getTitle());
+        art.setArtCategory(updatedArt.getArtCategory());
+        art.setDescription(updatedArt.getDescription());
+        art.setPrice(updatedArt.getPrice());
         artRepository.save(art);
     }
 

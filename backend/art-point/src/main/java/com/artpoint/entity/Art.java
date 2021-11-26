@@ -1,6 +1,7 @@
 package com.artpoint.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +26,8 @@ public class Art {
     private String description;
     private double price;
     private String artCategory;
+
+    @JsonIgnore
     private String imageLocation;
 
 //    private int quantity;
