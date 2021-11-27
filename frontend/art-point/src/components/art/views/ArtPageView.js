@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import CategoryFilter from "../../UI/CategoryFilter";
 import FilterDrawer from "../../UI/FilterDrawer";
 
-const ArtPageView = () => {
+const ArtPageView = (props) => {
     const [arts, setArts] = useState([]);
     const [searchTitle, setSearchTitle] = useState("");
 
@@ -42,7 +42,7 @@ const ArtPageView = () => {
     console.log("heeeyeyey");
 
     useEffect(() => {
-        let url = "http://localhost:8080/art?";
+        let url = props.baseURL;
         if (searchTitle != "") url += `title=${searchTitle}`;
         url += `&page=${currentPage - 1}`;
 
