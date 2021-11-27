@@ -41,7 +41,11 @@ const ArtDetailView = () => {
     //const imageURL = "http://localhost:8080/images/" + params.artId + ".png";
 
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-    const userId = useSelector(state => state.auth.user.id);
+    const user = useSelector(state => state.auth.user);
+    let userId = null;
+    if (user) {
+        userId = user.id;
+    }
 
     if (!art['id']) {
         return <div>ART NOT FOUND</div>
@@ -94,8 +98,8 @@ const ArtDetailView = () => {
                         Add to Cart
                     </Button> */}
 
-                        {showOPtions ? <ArtDeleteDialogForm /> : <ChatFormDialog art={art} />}
-                        {showOPtions ? <ArtEditDialogForm /> : null}
+                        {showOPtions ? <ArtDeleteDialogForm art={art} /> : <ChatFormDialog art={art} />}
+                        {showOPtions ? <ArtEditDialogForm art={art} /> : null}
                     </Grid>
                 </Grid>
             </Box>

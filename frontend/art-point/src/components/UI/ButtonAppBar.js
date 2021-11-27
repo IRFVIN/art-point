@@ -16,8 +16,13 @@ import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/store';
+import TemporaryDrawer from './TemporaryDrawer';
 
-export default function ButtonAppBar() {
+
+const drawerWidth = 240;
+
+
+export default function ButtonAppBar(props) {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const menuId = 'primary-search-account-menu';
@@ -131,9 +136,13 @@ export default function ButtonAppBar() {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar position="fixed"
+                sx={{
+                    width: { sm: `calc(100% - ${drawerWidth}px)` },
+                    ml: { sm: `${drawerWidth}px` },
+                }}>
                 <Toolbar>
-                    <IconButton
+                    {/* <IconButton
                         size="large"
                         edge="start"
                         color="inherit"
@@ -141,7 +150,17 @@ export default function ButtonAppBar() {
                         sx={{ mr: 2 }}
                     >
                         <MenuIcon />
+                    </IconButton> */}
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={props.handleDrawerToggle}
+                        sx={{ mr: 2, display: { sm: 'none' } }}
+                    >
+                        <MenuIcon />
                     </IconButton>
+                    {/* <TemporaryDrawer /> */}
                     <Typography
                         variant="h6"
                         component={Link}
@@ -150,7 +169,7 @@ export default function ButtonAppBar() {
                         ArtPoint
                     </Typography>
 
-                    <Button color="inherit" href="/art">Discover Arts</Button>
+                    {/* <Button color="inherit" href="/art">Discover Arts</Button> */}
                     {content}
 
                 </Toolbar>

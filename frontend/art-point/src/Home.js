@@ -25,12 +25,12 @@ const Home = () => {
                 {/* {token} */}
             </Typography>
 
-            <Typography variant="h3"
+            {/* <Typography variant="h3"
                 component={Link}
                 to="/users"
             >
                 All Sellers
-            </Typography>
+            </Typography> */}
         </div>
     );
 }
