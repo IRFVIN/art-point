@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Container, IconButton, Input, InputAdornment, Pagination, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import SearchIcon from '@mui/icons-material/Search';
+import CategoryFilter from "../../UI/CategoryFilter";
 
 const ArtPageView = () => {
     const [arts, setArts] = useState([]);
@@ -26,6 +27,11 @@ const ArtPageView = () => {
         console.log(e);
     }
 
+    const onApplyingFilter = (arts) => {
+        console.log(arts);
+        // setArts(arts);
+    }
+
     console.log("heeeyeyey");
 
     useEffect(() => {
@@ -43,9 +49,13 @@ const ArtPageView = () => {
 
     return (
         <Container>
-            <form onSubmit={handleSubmit}>
-                <TextField variant="outlined" placeholder="Search by Title" onChange={handleSearchTitleChange}/>
-            </form>
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <TextField variant="outlined" placeholder="Search by Title" onChange={handleSearchTitleChange} />
+                </form>
+
+                <CategoryFilter onApplyingFilter={onApplyingFilter} />
+            </div>
 
             <ArtGridView arts={arts} />
             <Pagination

@@ -18,6 +18,8 @@ import Typography from '@mui/material/Typography';
 import { Outlet } from 'react-router';
 import ButtonAppBar from './ButtonAppBar';
 import { Link } from 'react-router-dom';
+import TitleSearchBar from './TitleSearchBar';
+
 
 const drawerWidth = 240;
 
@@ -44,8 +46,9 @@ function ResponsiveDrawer(props) {
                     </ListItemIcon>
                     <ListItemText primary="Discover Arts" />
                 </ListItem>
-
+                {/* <TitleSearchBar /> */}
             </List>
+
             <Divider />
             <List>
 
