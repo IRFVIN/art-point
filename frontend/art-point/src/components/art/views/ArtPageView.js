@@ -29,9 +29,10 @@ const ArtPageView = () => {
     console.log("heeeyeyey");
 
     useEffect(() => {
-        let url = `http://localhost:8080/art?page=${currentPage - 1}`;
-        if (searchTitle != "") url += `&title=${searchTitle}`;
-        
+        let url = "http://localhost:8080/art?";
+        if (searchTitle != "") url += `title=${searchTitle}`;
+        url += `&page=${currentPage - 1}`;
+
         fetch(url).then(res => {
             return res.json();
         }).then(res => {
