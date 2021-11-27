@@ -1,6 +1,7 @@
 package com.artpoint.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import com.artpoint.entity.Art;
 import com.artpoint.service.ArtService;
@@ -8,6 +9,7 @@ import com.artpoint.service.ArtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,8 +34,15 @@ public class ArtController {
         )
     })
     @GetMapping("/art")
-    public List<Art> getAllArt() {
-        return artService.getAllArt();
+    // public List<Art> getAllArt() {
+    //     return artService.getAllArt();
+    // }
+    public ResponseEntity<Map<String, Object>> getAllArt(
+        @RequestParam(required = false) String title,
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int size
+    ) {
+        return artService.getAllArt(title, page, size);
     }
 
     @Operation(summary = "Add a new Art")

@@ -20,6 +20,7 @@ import { persistStore } from 'redux-persist';
 import ChatNotification from './components/chat/ChatNotification';
 import UserArts from './components/user/views/UserArts';
 import AccountSettings from './components/user/views/AccountSettings';
+import ArtPageView from './components/art/views/ArtPageView';
 
 let persistor = persistStore(store)
 
@@ -33,7 +34,7 @@ ReactDOM.render(
               <Route path="/" element={<Home />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/signin" element={<SignIn />} />
-              <Route path="/art" element={<ArtGridView />} />
+              <Route path="/art" element={<ArtPageView />} />
               <Route path="/art/create" element={<ArtCreateForm />} />
               <Route path="art/:artId" element={<ArtDetailView />} />
               <Route path="user/:userId" element={<UserDetailView />} />
