@@ -51,12 +51,32 @@ function ResponsiveDrawer(props) {
 
                 <ListItem
                     component={Link}
-                    to="/users"
+                    to="/sellers/featured"
                 >
                     <ListItemIcon>
                         <InboxIcon />
                     </ListItemIcon>
                     <ListItemText primary="Featured sellers" />
+                </ListItem>
+
+                <ListItem
+                    component={Link}
+                    to="/sellers/featured"
+                >
+                    <ListItemIcon>
+                        <InboxIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Top rated sellers" />
+                </ListItem>
+
+                <ListItem
+                    component={Link}
+                    to="/sellers"
+                >
+                    <ListItemIcon>
+                        <InboxIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="All sellers" />
                 </ListItem>
 
             </List>

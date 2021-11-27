@@ -38,6 +38,7 @@ ReactDOM.render(
               <Route path="art/:artId" element={<ArtDetailView />} />
               <Route path="user/:userId" element={<UserDetailView />} />
               <Route path="/sellers" element={<UserGridView />} />
+              <Route path="/sellers/featured" element={<UserGridView />} />
               <Route path="/profile" element={<UserProfileView />} />
               <Route path="/notification" element={<ChatNotification />} />
               <Route path="/user/arts" element={<UserArts />} />

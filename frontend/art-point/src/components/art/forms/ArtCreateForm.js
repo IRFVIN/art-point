@@ -53,12 +53,18 @@ owner	User{...}
 }
 */
 
-import { Button, Card, CardActions, CardContent, TextField } from '@mui/material';
-import React from 'react';
+import { Alert, Button, Card, CardActions, CardContent, Collapse, TextField } from '@mui/material';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router';
 
 export default function ArtCreateForm() {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const user = useSelector(state => state.auth.user);
+  const token = useSelector(state => state.auth.token);
+  const [alert, setAlert] = useState(false);
   const onSubmit = data => {
     //console.log(data);
 
@@ -66,7 +72,10 @@ export default function ArtCreateForm() {
       'title': data.title,
       'description': data.description,
       'price': data.price,
-      'artCategory': 'test'
+      'artCategory': 'test',
+      'owner': {
+        id: user.id
+      }
     });
 
     const artJSONblob = new Blob([artJSON], {
@@ -80,64 +89,78 @@ export default function ArtCreateForm() {
 
     fetch('http://localhost:8080/art', {
       method: 'POST',
-      body: multipartFormData
+      body: multipartFormData,
+      headers: {
+        Authorization: "Bearer " + token
+      }
     }).then(res => {
-
+      setAlert(true);
     }).catch(err => {
       console.log(err);
     });
   }
   console.log(errors);
 
+  if (!isLoggedIn) {
+    return (
+      <Navigate to="/" />
+    );
+  }
   return (
-    <form method="POST" encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
-      <Card>
-        <CardContent>
-          <div>
-            <TextField
-              fullWidth
-              variant="standard"
-              label="title"
-              {...register("title", { required: true, maxLength: 100 })}
-            />
-          </div>
-          {/* <input type="text" placeholder="Title" {...register("title", { required: true, maxLength: 100 })} />
-          <br /> */}
+    <div>
+      <Collapse in={alert}>
+        <Alert>Art Item added</Alert>
+      </Collapse>
+      <form method="POST" encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
 
-          <div>
-            <TextField
-              fullWidth
-              variant="standard"
-              multiline
-              maxRows={4}
-              label="description"
-              {...register("description", { required: true, maxLength: 500 })}
-            />
-          </div>
+        <Card>
+          <CardContent>
+            <div>
+              <TextField
+                fullWidth
+                variant="standard"
+                label="title"
+                {...register("title", { required: true, maxLength: 100 })}
+              />
+            </div>
+            {/* <input type="text" placeholder="Title" {...register("title", { required: true, maxLength: 100 })} />
+    <br /> */}
 
-          {/* <textarea placeholder="Description" {...register("description", { required: true, maxLength: 500 })} />
-          <br /> */}
+            <div>
+              <TextField
+                fullWidth
+                variant="standard"
+                multiline
+                maxRows={4}
+                label="description"
+                {...register("description", { required: true, maxLength: 500 })}
+              />
+            </div>
 
-          <div>
-            <TextField
-              fullWidth
-              variant="standard"
-              label="price"
-              {...register("price", { required: true })}
-            />
-          </div>
+            {/* <textarea placeholder="Description" {...register("description", { required: true, maxLength: 500 })} />
+    <br /> */}
 
-          {/* <input type="number" placeholder="Price" {...register("price", { required: true })} />
-          <br /> */}
-          <div>
-            <input type="file" alt="Art Image" placeholder="Upload Art Image" {...register("image", { required: true })} />
-          </div>
+            <div>
+              <TextField
+                fullWidth
+                variant="standard"
+                label="price"
+                {...register("price", { required: true })}
+              />
+            </div>
 
-        </CardContent>
-        <CardActions>
-          <Button variant="contained" type="submit">Submit</Button>
-        </CardActions>
-      </Card>
-    </form>
+            {/* <input type="number" placeholder="Price" {...register("price", { required: true })} />
+    <br /> */}
+            <div>
+              <input type="file" alt="Art Image" placeholder="Upload Art Image" {...register("image", { required: true })} />
+            </div>
+
+          </CardContent>
+          <CardActions>
+            <Button variant="contained" type="submit">Submit</Button>
+          </CardActions>
+        </Card>
+      </form>
+    </div>
   );
 }
