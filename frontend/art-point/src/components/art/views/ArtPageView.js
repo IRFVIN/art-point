@@ -1,9 +1,10 @@
 import ArtGridView from "./ArtGridView";
 import { useEffect, useState } from "react";
-import { Button, Container, IconButton, Input, InputAdornment, Pagination, TextField } from "@mui/material";
+import { Button, Container, CssBaseline, IconButton, Input, InputAdornment, Pagination, TextField, Toolbar } from "@mui/material";
 import { Box } from "@mui/system";
 import SearchIcon from '@mui/icons-material/Search';
 import CategoryFilter from "../../UI/CategoryFilter";
+import FilterDrawer from "../../UI/FilterDrawer";
 
 const ArtPageView = () => {
     const [arts, setArts] = useState([]);
@@ -11,6 +12,12 @@ const ArtPageView = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+
+    // const [mobileOpen, setMobileOpen] = React.useState(false);
+
+    // const handleDrawerToggle = () => {
+    //     setMobileOpen(!mobileOpen);
+    // };
 
     const handlePageChange = (e, p) => {
         console.log(p);
@@ -48,22 +55,31 @@ const ArtPageView = () => {
     }, [searchTitle, currentPage]);
 
     return (
-        <Container>
-            <div>
+        <Box sx={{ display: 'flex' }}>
+            {/* <CssBaseline /> */}
+
+            <Box>
+                {/* <FilterDrawer /> */}
+                {/* <div> */}
                 <form onSubmit={handleSubmit}>
-                    <TextField variant="outlined" placeholder="Search by Title" onChange={handleSearchTitleChange} />
+                    <TextField fullWidth variant="outlined" placeholder="Search by Title" onChange={handleSearchTitleChange} />
                 </form>
+                {/* <Toolbar /> */}
 
-                <CategoryFilter onApplyingFilter={onApplyingFilter} />
-            </div>
+                {/* <CategoryFilter onApplyingFilter={onApplyingFilter} /> */}
+                {/* </div> */}
 
-            <ArtGridView arts={arts} />
-            <Pagination
-                count={totalPages}
-                size="large"
-                onChange={handlePageChange}
-            />
-        </Container>
+                <ArtGridView arts={arts} />
+                <Pagination
+                    count={totalPages}
+                    size="large"
+                    onChange={handlePageChange}
+                />
+            </Box>
+            <Box>
+                <FilterDrawer />
+            </Box>
+        </Box>
     );
 
 }

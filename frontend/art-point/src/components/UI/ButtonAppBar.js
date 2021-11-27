@@ -16,7 +16,7 @@ import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/store';
-import TemporaryDrawer from './TemporaryDrawer';
+// import TemporaryDrawer from './TemporaryDrawer';
 
 
 const drawerWidth = 240;
@@ -138,8 +138,9 @@ export default function ButtonAppBar(props) {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="fixed"
                 sx={{
-                    width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    ml: { sm: `${drawerWidth}px` },
+                    // width: { sm: `calc(100% - ${drawerWidth}px)` },
+                    // ml: { sm: `${drawerWidth}px` },
+                    zIndex: (theme) => theme.zIndex.drawer + 1
                 }}>
                 <Toolbar>
                     {/* <IconButton

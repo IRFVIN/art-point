@@ -90,7 +90,7 @@ function ResponsiveDrawer(props) {
 
     return (
         <Box sx={{ display: 'flex' }}>
-            <CssBaseline />
+            {/* <CssBaseline /> */}
             <ButtonAppBar handleDrawerToggle={handleDrawerToggle} />
             {/* <AppBar
                 position="fixed"
@@ -121,7 +121,7 @@ function ResponsiveDrawer(props) {
             >
                 {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                 <Drawer
-                    container={container}
+                    // container={container}
                     variant="temporary"
                     open={mobileOpen}
                     onClose={handleDrawerToggle}
