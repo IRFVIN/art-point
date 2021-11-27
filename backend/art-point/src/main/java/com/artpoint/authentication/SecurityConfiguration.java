@@ -64,7 +64,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/art/**",
                         "/h2-console/**",
                         "/users",
-                        "/user/**")
+                        "/user/**",
+                        "/sellers")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

@@ -53,6 +53,7 @@ owner	User{...}
 }
 */
 
+import { Button, Card, CardActions, CardContent, TextField } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -62,14 +63,14 @@ export default function ArtCreateForm() {
     //console.log(data);
 
     const artJSON = JSON.stringify({
-        'title': data.title,
-        'description': data.description,
-        'price': data.price,
-        'artCategory': 'test'
+      'title': data.title,
+      'description': data.description,
+      'price': data.price,
+      'artCategory': 'test'
     });
 
     const artJSONblob = new Blob([artJSON], {
-        type: 'application/json'
+      type: 'application/json'
     });
 
     let multipartFormData = new FormData();
@@ -78,27 +79,65 @@ export default function ArtCreateForm() {
     //console.log(data.image[0]);
 
     fetch('http://localhost:8080/art', {
-        method: 'POST',
-        body: multipartFormData
+      method: 'POST',
+      body: multipartFormData
     }).then(res => {
 
     }).catch(err => {
-        console.log(err);
+      console.log(err);
     });
   }
   console.log(errors);
-  
+
   return (
     <form method="POST" encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
-      <input type="text" placeholder="Title" {...register("title", {required: true, maxLength: 100})} />
-      <br />
-      <textarea placeholder="Description" {...register("description", {required: true, maxLength: 500})} />
-      <br />
-      <input type="number" placeholder="Price" {...register("price", {required: true})} />
-      <br />
-      <input type="file" alt="Art Image" placeholder="Upload Art Image" {...register("image", {required: true})} />
-      <br />
-      <input type="submit" />
+      <Card>
+        <CardContent>
+          <div>
+            <TextField
+              fullWidth
+              variant="standard"
+              label="title"
+              {...register("title", { required: true, maxLength: 100 })}
+            />
+          </div>
+          {/* <input type="text" placeholder="Title" {...register("title", { required: true, maxLength: 100 })} />
+          <br /> */}
+
+          <div>
+            <TextField
+              fullWidth
+              variant="standard"
+              multiline
+              maxRows={4}
+              label="description"
+              {...register("description", { required: true, maxLength: 500 })}
+            />
+          </div>
+
+          {/* <textarea placeholder="Description" {...register("description", { required: true, maxLength: 500 })} />
+          <br /> */}
+
+          <div>
+            <TextField
+              fullWidth
+              variant="standard"
+              label="price"
+              {...register("price", { required: true })}
+            />
+          </div>
+
+          {/* <input type="number" placeholder="Price" {...register("price", { required: true })} />
+          <br /> */}
+          <div>
+            <input type="file" alt="Art Image" placeholder="Upload Art Image" {...register("image", { required: true })} />
+          </div>
+
+        </CardContent>
+        <CardActions>
+          <Button variant="contained" type="submit">Submit</Button>
+        </CardActions>
+      </Card>
     </form>
   );
 }

@@ -22,6 +22,18 @@ public class UserService {
         return users;
     }
 
+    public List<User> getAllSellers() {
+        List<User> sellers = new ArrayList<>();
+
+        for (User user : userRepository.findAll()) {
+            if (!user.getMyArts().isEmpty()) {
+                sellers.add(user);
+            }
+        }
+
+        return sellers;
+    }
+
     public User getUser(long id) {
         return userRepository.findById(id).get();
     }

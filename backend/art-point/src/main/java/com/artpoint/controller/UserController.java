@@ -39,6 +39,11 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @GetMapping("/sellers")
+    public List<User> getAllSellers() {
+        return userService.getAllSellers();
+    }
+
     @Operation(summary = "Add a new User")
     @ApiResponses(value = {
         @ApiResponse(

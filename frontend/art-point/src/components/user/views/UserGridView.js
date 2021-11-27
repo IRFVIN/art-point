@@ -7,7 +7,7 @@ const UserGridView = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        const url = "http://localhost:8080/users";
+        const url = "http://localhost:8080/sellers";
         fetch(url).then(res => {
             return res.json();
         }).then(res => {
