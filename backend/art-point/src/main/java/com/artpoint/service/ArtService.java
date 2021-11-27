@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.artpoint.entity.Art;
+import com.artpoint.entity.User;
 import com.artpoint.repository.ArtRepository;
 import com.artpoint.repository.FileSystemRepository;
 
@@ -35,11 +36,7 @@ public class ArtService {
     //     return art;
     // }
 
-    public ResponseEntity<Map<String, Object>> getAllArt(
-        @RequestParam(required = false) String title,
-        @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "10") int size
-    ) {
+    public ResponseEntity<Map<String, Object>> getAllArt(String title, int page, int size) {
         try {
             List<Art> art = new ArrayList<>();
             Pageable pageable = PageRequest.of(page, size);
@@ -47,6 +44,30 @@ public class ArtService {
             Page<Art> pageArts;
             if (title == null) pageArts = artRepository.findAll(pageable);
             else pageArts = artRepository.findByTitleContainingIgnoreCase(title, pageable);
+
+            art = pageArts.getContent();
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("art", art);
+            response.put("currentPage", pageArts.getNumber());
+            response.put("totalItems", pageArts.getTotalElements());
+            response.put("totalPages", pageArts.getTotalPages());
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public ResponseEntity<Map<String, Object>> getAllUserArt(User owner, String title, int page, int size) {
+        try {
+            List<Art> art = new ArrayList<>();
+            Pageable pageable = PageRequest.of(page, size);
+
+            Page<Art> pageArts;
+            if (title == null) pageArts = artRepository.findAllByOwner(owner, pageable);
+            else pageArts = artRepository.findByOwnerAndTitleContainingIgnoreCase(owner, title, pageable);
 
             art = pageArts.getContent();
 
