@@ -1,27 +1,31 @@
 import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router";
+import { Navigate, useParams } from "react-router";
 import ArtCardView from "../../art/views/ArtCardView";
 import ArtPageView from "../../art/views/ArtPageView";
 
-const UserArts = () => {
+const UserArts = (props) => {
 
     const [arts, setArts] = useState([]);
-    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-    const user = useSelector(state => state.auth.user);
-    let userId = null;
-    if (user) {
-        userId = user.id;
-    }
+    // const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+    // const user = useSelector(state => state.auth.user);
+    // let userId = null;
+    // if (user) {
+    //     userId = user.id;
+    // }
+    let params = useParams();
+    let userId = params.userId;
 
-    if (!isLoggedIn) {
+    if (!userId) {
+        console.log("not present");
         return (
             <Navigate to="/" />
         );
     }
 
-    if (!userId) return;
+    // if (!userId) return;
+    console.log(userId);
 
     const baseURL = `http://localhost:8080/user/${userId}/arts?`;
 

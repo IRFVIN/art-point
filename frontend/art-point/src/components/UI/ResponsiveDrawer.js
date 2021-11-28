@@ -64,7 +64,7 @@ function ResponsiveDrawer(props) {
 
                 <ListItem
                     component={Link}
-                    to="/sellers/featured"
+                    to="/sellers/rated"
                 >
                     <ListItemIcon>
                         <InboxIcon />

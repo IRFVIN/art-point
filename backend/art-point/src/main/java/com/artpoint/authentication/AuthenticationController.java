@@ -19,36 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
 
     @Autowired
-    private JWTUtility jwtUtility;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private UserDetailsService userDetailsService;
-
-    @Autowired
-    private UserRepository userRepository;
+    AuthenticationService authenticationService;
 
     @PostMapping("/authenticate")
     public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
-        try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            jwtRequest.getEmail(),
-                            jwtRequest.getPassword()
-                    )
-            );
-        } catch (BadCredentialsException e) {
-            throw new Exception("INVALID CREDENTIALS", e);
-        }
-
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(jwtRequest.getEmail());
-
-        final String token = jwtUtility.generateToken(userDetails);
-        final User user = userRepository.findByEmail(jwtRequest.getEmail()).get();
-
-        return new JwtResponse(token, user);
+        return authenticationService.authenticate(jwtRequest);
     }
 
 }

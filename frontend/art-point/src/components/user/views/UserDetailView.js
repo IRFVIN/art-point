@@ -87,7 +87,7 @@ const UserDetailView = () => {
                         size="small" variant="contained"
                         startIcon={<AddShoppingCartIcon />}
                         component={Link}
-                        to="/user/arts"
+                        to={"/user/" + user.id + "/arts"}
                     >
                         See My Arts
                     </Button>

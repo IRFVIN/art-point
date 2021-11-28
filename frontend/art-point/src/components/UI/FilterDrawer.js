@@ -67,6 +67,10 @@ function FilterDrawer(props) {
 
             <Divider />
             <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                <ListItem>
+                    <ListItemText primary="categories" />
+                </ListItem>
+                <Divider />
                 {categories.map((value) => {
                     const labelId = `checkbox-list-label-${value}`;
 
@@ -91,6 +95,15 @@ function FilterDrawer(props) {
                     );
                 })}
             </List>
+            <Divider />
+            <List>
+                <ListItem>
+                    <ListItemText primary="sory by price" />
+                </ListItem>
+            </List>
+
+            <Divider />
+
         </div>
     );
 

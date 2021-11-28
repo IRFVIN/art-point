@@ -2,16 +2,21 @@ import { Card, CardContent, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
+import { Navigate } from "react-router";
 
 const ChatNotification = () => {
 
     const [chats, setChats] = useState([]);
 
-    const userId = useSelector(state => state.auth.user.id);
+    const user = useSelector(state => state.auth.user);
+
+    // const userId = useSelector(state => state.auth.user.id);
     const token = useSelector(state => state.auth.token);
 
     useEffect(() => {
-        const url = "http://localhost:8080/user/" + userId + "/notifications";
+        if (!user)
+            return;
+        const url = "http://localhost:8080/user/" + user.id + "/notifications";
         fetch(url, {
             headers: {
                 'Authorization': "Bearer " + token
@@ -23,6 +28,11 @@ const ChatNotification = () => {
         });
     }, []);
 
+    if (!user) {
+        return (
+            <Navigate to="/" />
+        );
+    }
     return (
         <div>
             <Typography variant="h1">

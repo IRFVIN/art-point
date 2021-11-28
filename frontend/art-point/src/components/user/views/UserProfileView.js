@@ -48,7 +48,7 @@ const UserProfileView = () => {
             >
                 <ListItemButton
                     component={Link}
-                    to="/user/arts"
+                    to={"/user/" + user.id + "/arts"}
                 >
                     <ListItemIcon>
                         <SendIcon />

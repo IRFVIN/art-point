@@ -3,6 +3,7 @@ package com.artpoint.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.artpoint.authentication.JwtResponse;
 import com.artpoint.entity.Art;
 import com.artpoint.entity.Chat;
 import com.artpoint.entity.User;
@@ -47,8 +48,11 @@ public class UserController {
     }
 
     @GetMapping("/sellers")
-    public List<User> getAllSellers() {
-        return userService.getAllSellers();
+    public ResponseEntity<Map<String, Object>> getAllSellers(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        return userService.getAllSellers(page, size);
     }
 
     @Operation(summary = "Add a new User")
@@ -84,8 +88,8 @@ public class UserController {
         )
     })
     @PutMapping(value = "/user/{id}")
-    public void updateUser(@PathVariable Long id, @RequestBody User user) {
-        userService.updateUser(id, user);
+    public JwtResponse updateUser(@PathVariable Long id, @RequestBody User user) throws Exception {
+        return userService.updateUser(id, user);
     }
 
     @Operation(summary = "Delete user with specified ID ")
