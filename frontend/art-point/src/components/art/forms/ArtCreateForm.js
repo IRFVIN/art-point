@@ -103,7 +103,7 @@ export default function ArtCreateForm() {
 
   if (!isLoggedIn) {
     return (
-      <Navigate to="/" />
+      <Navigate to="/signin" />
     );
   }
   return (

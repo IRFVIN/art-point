@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/store';
 // import TemporaryDrawer from './TemporaryDrawer';
+import LandscapeIcon from '@mui/icons-material/Landscape';
 
 
 const drawerWidth = 240;
@@ -164,12 +165,13 @@ export default function ButtonAppBar(props) {
                         <MenuIcon />
                     </IconButton>
                     {/* <TemporaryDrawer /> */}
+                    <LandscapeIcon sx={{ mr: 2 }} />
                     <Typography
                         variant="h6"
                         component={Link}
                         to="/"
                         sx={{ flexGrow: 1, textDecoration: "none", color: "white", cursor: "pointer" }}>
-                        ArtPoint
+                        Art Point
                     </Typography>
 
                     {/* <Button color="inherit" href="/art">Discover Arts</Button> */}
