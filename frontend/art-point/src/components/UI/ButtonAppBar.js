@@ -102,13 +102,14 @@ export default function ButtonAppBar(props) {
         </Menu>
     );
 
+    const user = useSelector(state => state.auth.user);
 
     if (isLoggedIn) {
         content = (<div>
             <IconButton
                 size="large"
                 edge="end"
-                aria-label="account of current user"
+                aria-label="notifications of current user"
                 // aria-controls={menuId}
                 component={Link}
                 aria-haspopup="true"
@@ -128,6 +129,7 @@ export default function ButtonAppBar(props) {
                 onClick={handleProfileMenuOpen}
                 color="inherit"
             >
+                <Typography>{user.firstName}</Typography>
                 <AccountCircle />
             </IconButton>
         </div>);
