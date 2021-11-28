@@ -99,8 +99,8 @@ insert into user (email, password, username, first_name, last_name, address, pho
 insert into user (email, password, username, first_name, last_name, address, phone, rating) values ('fnabarro2q@acquirethisname.com', 'rADCd3v', 'fnabarro2q', 'Felike', 'Nabarro', '912 Sunbrook Avenue', '2906057854', 4.79);
 insert into user (email, password, username, first_name, last_name, address, phone, rating) values ('ssterry2r@barnesandnoble.com', 'Z07zdgjn', 'ssterry2r', 'Syd', 'Sterry', '145 Sycamore Street', '3406022397', 4.23);
 
--- SET @PROJDIR = '/home/vineetkumar19/Desktop/ecom/ArtPoint/';
-SET @PROJDIR = '/home/genericspecimen/repos';
+ SET @PROJDIR = '/home/vineetkumar19/Desktop/ecom/ArtPoint/';
+--SET @PROJDIR = '/home/genericspecimen/repos';
 insert into art (title, description, price, image_location) values ('Bird of Paradise', 'Other physeal fracture of lower end of humerus, left arm, sequela', 8374.07, CONCAT(@PROJDIR, '/art-point/backend/art-point/target/classes/static/images/1.png'));
 insert into art (title, description, price, image_location) values ('Enduring Love', 'Unspecified superficial injury of unspecified forearm, initial encounter', 6204.08, CONCAT(@PROJDIR, '/art-point/backend/art-point/target/classes/static/images/2.png'));
 insert into art (title, description, price, image_location) values ('Anchorman 2: The Legend Continues', 'Adverse effect of loop [high-ceiling] diuretics, initial encounter', 7579.35, CONCAT(@PROJDIR, '/art-point/backend/art-point/target/classes/static/images/3.png'));
