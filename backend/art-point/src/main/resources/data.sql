@@ -100,6 +100,7 @@ insert into user (email, password, username, first_name, last_name, address, pho
 insert into user (email, password, username, first_name, last_name, address, phone, rating) values ('ssterry2r@barnesandnoble.com', 'Z07zdgjn', 'ssterry2r', 'Syd', 'Sterry', '145 Sycamore Street', '3406022397', 4.23);
 
 SET @PROJDIR = '/home/vineetkumar19/Desktop/ecom/ArtPoint/';
+--SET @PROJDIR = '/home/genericspecimen/repos';
 insert into art (title, description, price, image_location) values ('Bird of Paradise', 'Other physeal fracture of lower end of humerus, left arm, sequela', 8374.07, CONCAT(@PROJDIR, '/art-point/backend/art-point/target/classes/static/images/1.png'));
 insert into art (title, description, price, image_location) values ('Enduring Love', 'Unspecified superficial injury of unspecified forearm, initial encounter', 6204.08, CONCAT(@PROJDIR, '/art-point/backend/art-point/target/classes/static/images/2.png'));
 insert into art (title, description, price, image_location) values ('Anchorman 2: The Legend Continues', 'Adverse effect of loop [high-ceiling] diuretics, initial encounter', 7579.35, CONCAT(@PROJDIR, '/art-point/backend/art-point/target/classes/static/images/3.png'));
@@ -280,3 +281,13 @@ where id between 51 and 100;
 --insert into ORDER_ART (order_id, art_id, quantity) values (3, 29, 8);
 --insert into ORDER_ART (order_id, art_id, quantity) values (11, 72, 4);
 --insert into ORDER_ART (order_id, art_id, quantity) values (12, 72, 10);
+
+insert into category values ('architecture');
+insert into category values ('ceramics');
+insert into category values ('drawing');
+insert into category values ('painting');
+insert into category values ('photography');
+insert into category values ('sculpture');
+
+insert into art_categories values (1, 'sculpture');
+insert into art_categories values (1, 'painting');
