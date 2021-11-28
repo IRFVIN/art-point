@@ -1,6 +1,7 @@
 package com.artpoint.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import com.artpoint.entity.Art;
 import com.artpoint.entity.Category;
@@ -8,12 +9,15 @@ import com.artpoint.service.CategoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -49,7 +53,19 @@ public class CategoryController {
     }
 
     @GetMapping("/category/{id}/arts")
-    public List<Art> getCategoryArts(@PathVariable Long id) {
-        return categoryService.getCategoryArts(id);
+    // public List<Art> getCategoryArts(
+    //     @RequestParam(defaultValue = "0") int page,
+    //     @RequestParam(defaultValue = "10") int size,
+    //     @PathVariable Long id
+    // ) {
+    //     return categoryService.getCategoryArts(id, page, size);
+    // }
+
+    public ResponseEntity<Map<String, Object>> getCategoryArts(
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int size,
+        @PathVariable Long id
+    ) {
+        return categoryService.getCategoryArts(id, page, size);
     }
 }
