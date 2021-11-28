@@ -2,26 +2,57 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Home from './Home';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SignUp from './components/authentication/SignUp';
 import SignIn from './components/authentication/SignIn';
-import ArtGrid from './components/art/ArtGrid';
-import Art from './components/art/Art';
+import ArtGridView from './components/art/views/ArtGridView';
+import ArtDetailView from './components/art/views/ArtDetailView';
+import ArtCreateForm from './components/art/forms/ArtCreateForm';
+import UserGridView from './components/user/views/UserGridView';
+import UserDetailView from './components/user/views/UserDetailView';
+import UserProfileView from './components/user/views/UserProfileView';
+import store from './store/store';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
+import ChatNotification from './components/chat/ChatNotification';
+import UserArts from './components/user/views/UserArts';
+import AccountSettings from './components/user/views/AccountSettings';
+import ArtPageView from './components/art/views/ArtPageView';
+import SellerPageView from './components/seller/SellerPageView';
 
+let persistor = persistStore(store)
+let server_url = "http://localhost:8080/";
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/arts" element={<ArtGrid />} />
-          <Route path="arts/:artId" element={<Art />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <React.StrictMode>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<App />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/signin" element={<SignIn />} />
+              <Route path="/art" element={<ArtPageView baseURL="http://localhost:8080/art?" />} />
+              <Route path="/art/create" element={<ArtCreateForm />} />
+              <Route path="art/:artId" element={<ArtDetailView />} />
+              <Route path="user/:userId" element={<UserDetailView />} />
+              <Route path="/sellers" element={<SellerPageView baseURL={server_url + "sellers"} />} />
+              <Route path="/sellers/featured" element={<SellerPageView baseURL={server_url + "sellers"} />} />
+              <Route path="/sellers/rated" element={<SellerPageView baseURL={server_url + "sellers/rated"} />} />
+              <Route path="/profile" element={<UserProfileView />} />
+              <Route path="/notification" element={<ChatNotification />} />
+              <Route path="/user/:userId/arts" element={<UserArts />} />
+              <Route path="/setting" element={<AccountSettings baseURL={server_url + "user"} />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </React.StrictMode>
+    </PersistGate>
+
+  </Provider>,
   document.getElementById('root')
 );
 

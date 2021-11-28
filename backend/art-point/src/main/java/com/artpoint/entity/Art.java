@@ -1,14 +1,24 @@
 package com.artpoint.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -16,6 +26,7 @@ import javax.persistence.ManyToOne;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+
 public class Art {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,15 +34,23 @@ public class Art {
     private String title;
     private String description;
     private double price;
-    private String artCategory;
+    
+    //@JsonManagedReference(value = "art-category")
+    @ManyToMany
+    public List<Category> categories;
+
+
+    @JsonIgnore
+    private String imageLocation;
+
 //    private int quantity;
 
     @ManyToOne
+//    @JsonBackReference
     private User owner;
 
 //    private String artCategory;
 //    private String ownerId;
-//    private String artPhotoLink;
 //    @ManyToOne
 //    private Order order;
 

@@ -1,5 +1,7 @@
 package com.artpoint.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +29,16 @@ public class User {
     private String phone;
     private double rating;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+//    @JsonManagedReference
+    @JsonIgnore
     private List<Art> myArts;
+
+    @OneToMany(mappedBy = "sender")
+    @JsonIgnore
+    private List<Chat> chatsTo;
+
+    @OneToMany(mappedBy = "receiver")
+    @JsonIgnore
+    private List<Chat> chatsFrom;
 }

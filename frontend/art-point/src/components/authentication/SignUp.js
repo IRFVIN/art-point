@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -12,6 +15,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, logout } from '../../store/store';
 
 function Copyright(props) {
     return (
@@ -29,20 +34,49 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+
+    const dispatch = useDispatch();
+
+    const [signupSuccessMessage, setSignupSuccessMessage] = useState(null);
+
+    // let signupSuccessMessage = <h1>Hello there</h1>;
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         // eslint-disable-next-line no-console
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
+
+        const newUserData = {
+            firstName: data.get("firstName"),
+            lastName: data.get("lastName"),
+            email: data.get("email"),
+            password: data.get("password")
+        }
+
+        const url = "http://localhost:8080/users";
+
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(newUserData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json()).then(newUser => {
+            console.log(newUser)
         });
+
+        setSignupSuccessMessage((
+            <Stack sx={{ width: '100%' }} spacing={2}>
+                <Alert severity="success">Registration Successfull!</Alert>
+            </Stack>));
+        console.log(newUserData);
     };
 
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
+                {signupSuccessMessage}
                 <Box
                     sx={{
                         marginTop: 8,
