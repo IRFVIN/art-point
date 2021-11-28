@@ -1,12 +1,9 @@
 package com.artpoint.entity;
 
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -31,8 +28,9 @@ public class Category {
     
     //@JsonBackReference(value = "art-category")
     
-    @ManyToMany(mappedBy = "categories")
-    public Set<Art> arts;
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
+    @JsonIgnore
+    public List<Art> arts;
     //@EqualsAndHashCode.Exclude public Set<Art> arts;
 
 }

@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -36,7 +37,7 @@ public class Art {
     
     //@JsonManagedReference(value = "art-category")
     @ManyToMany
-    public Set<Category> categories;
+    public List<Category> categories;
 
 
     @JsonIgnore
