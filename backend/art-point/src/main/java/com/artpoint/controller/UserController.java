@@ -1,5 +1,7 @@
 package com.artpoint.controller;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -53,6 +55,14 @@ public class UserController {
             @RequestParam(defaultValue = "10") int size
     ) {
         return userService.getAllSellers(page, size);
+    }
+
+    @GetMapping("/sellers/rated")
+    public ResponseEntity<Map<String, Object>> getTopRatedSellers(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        return userService.getTopRatedSellers(page, size);
     }
 
     @Operation(summary = "Add a new User")
@@ -120,7 +130,9 @@ public class UserController {
 
     @GetMapping("/user/{id}/notifications")
     public List<Chat> getMyChats(@PathVariable Long id) {
-        return userService.getUser(id).getChatsFrom();
+        List<Chat> chats = userService.getUser(id).getChatsFrom();
+        Collections.reverse(chats);
+        return chats;
     }
 
 }

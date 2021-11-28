@@ -60,6 +60,31 @@ public class ArtService {
         }
     }
 
+//    public ResponseEntity<Map<String, Object>> getAllArtInPriceRange(int page, int size, int minPrice, int maxPrice) {
+//        try {
+//            List<Art> art = new ArrayList<>();
+//            Pageable pageable = PageRequest.of(page, size);
+//
+//            Page<Art> pageArts = artRepository.findByPriceBetween(minPrice, maxPrice, pageable);
+////            if (title == null) pageArts = artRepository.findAll(pageable);
+////            else
+////                pageArts = artRepository.findByTitleContainingIgnoreCase(title, pageable);
+//
+//            art = pageArts.getContent();
+//
+//            Map<String, Object> response = new HashMap<>();
+//            response.put("art", art);
+//            response.put("currentPage", pageArts.getNumber());
+//            response.put("totalItems", pageArts.getTotalElements());
+//            response.put("totalPages", pageArts.getTotalPages());
+//
+//            return new ResponseEntity<>(response, HttpStatus.OK);
+//
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+
     public ResponseEntity<Map<String, Object>> getAllUserArt(User owner, String title, int page, int size) {
         try {
             List<Art> art = new ArrayList<>();

@@ -41,7 +41,7 @@ ReactDOM.render(
               <Route path="user/:userId" element={<UserDetailView />} />
               <Route path="/sellers" element={<SellerPageView baseURL={server_url + "sellers"} />} />
               <Route path="/sellers/featured" element={<SellerPageView baseURL={server_url + "sellers"} />} />
-              <Route path="/sellers/rated" element={<SellerPageView baseURL={server_url + "sellers"} />} />
+              <Route path="/sellers/rated" element={<SellerPageView baseURL={server_url + "sellers/rated"} />} />
               <Route path="/profile" element={<UserProfileView />} />
               <Route path="/notification" element={<ChatNotification />} />
               <Route path="/user/:userId/arts" element={<UserArts />} />

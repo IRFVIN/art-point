@@ -98,7 +98,7 @@ const ArtDetailView = () => {
                         Add to Cart
                     </Button> */}
 
-                        {showOPtions ? <ArtDeleteDialogForm art={art} /> : <ChatFormDialog art={art} />}
+                        {showOPtions ? <ArtDeleteDialogForm art={art} /> : <ChatFormDialog receiver={art.owner} art={art} />}
                         {showOPtions ? <ArtEditDialogForm art={art} /> : null}
                     </Grid>
                 </Grid>

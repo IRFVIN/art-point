@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,28 @@ public class UserService {
         try {
             List<User> sellers = new ArrayList<>();
             Pageable pageable = PageRequest.of(page, size);
+
+            Page<User> pageSellers = userRepository.findByMyArtsNotEmpty(pageable);
+
+            sellers = pageSellers.getContent();
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("sellers", sellers);
+            response.put("currentPage", pageSellers.getNumber());
+            response.put("totalItems", pageSellers.getTotalElements());
+            response.put("totalPages", pageSellers.getTotalPages());
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public ResponseEntity<Map<String, Object>> getTopRatedSellers(int page, int size) {
+        try {
+            List<User> sellers = new ArrayList<>();
+            Pageable pageable = PageRequest.of(page, size, Sort.by("rating").descending());
 
             Page<User> pageSellers = userRepository.findByMyArtsNotEmpty(pageable);
 

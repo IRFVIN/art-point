@@ -45,6 +45,19 @@ public class ArtController {
         return artService.getAllArt(title, page, size);
     }
 
+//    @GetMapping("/artbyprice")
+//    // public List<Art> getAllArt() {
+//    //     return artService.getAllArt();
+//    // }
+//    public ResponseEntity<Map<String, Object>> getAllArtInPriceRange(
+//            @RequestParam(defaultValue = "0") int page,
+//            @RequestParam(defaultValue = "10") int size,
+//            @RequestParam(defaultValue = "-2147483648") int minPrice,
+//            @RequestParam(defaultValue = "2147483647") int maxPrice
+//    ) {
+//        return artService.getAllArtInPriceRange(page, size, minPrice, maxPrice);
+//    }
+
     @Operation(summary = "Add a new Art")
     @ApiResponses(value = {
         @ApiResponse(

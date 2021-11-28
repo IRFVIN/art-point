@@ -21,6 +21,7 @@ import { Link } from 'react-router-dom';
 import TitleSearchBar from './TitleSearchBar';
 import ArtPageView from '../art/views/ArtPageView';
 import { Checkbox, ListItemButton } from '@mui/material';
+import PriceFilter from './PriceFilter';
 
 
 const drawerWidth = 180;
@@ -100,9 +101,16 @@ function FilterDrawer(props) {
                 <ListItem>
                     <ListItemText primary="sory by price" />
                 </ListItem>
+
+                <Divider />
+
+                <ListItem>
+                    <PriceFilter />
+                </ListItem>
+
             </List>
 
-            <Divider />
+
 
         </div>
     );

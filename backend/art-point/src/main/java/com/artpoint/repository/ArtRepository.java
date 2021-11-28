@@ -10,6 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 public interface ArtRepository extends CrudRepository<Art, Long> {
     Page<Art> findAll(Pageable pageable);
     Page<Art> findByTitleContainingIgnoreCase(String title, Pageable pageable);
+//    Page<Art> findByPriceBetween(int minPrice, int maxPrice, Pageable pageable);
 
     Page<Art> findAllByOwner(User owner, Pageable pageable);
     Page<Art> findByOwnerAndTitleContainingIgnoreCase(User owner, String title, Pageable pageable);

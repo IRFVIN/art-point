@@ -25,13 +25,14 @@ export default function ChatFormDialog(props) {
   const token = useSelector(state => state.auth.token);
   const handleSubmit = () => {
     console.log("hello " + msg);
-    const receiver = props.art;
+    // const receiver = props.art.owner;
     const url = "http://localhost:8080/send";
 
     const chatObj = {
       sender: sender,
-      receiver: receiver,
-      message: msg
+      receiver: props.receiver,
+      message: msg,
+      art: props.art
     }
 
     fetch(url, {
@@ -55,14 +56,14 @@ export default function ChatFormDialog(props) {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Chat with sender
+        {props.reply ? "Reply" : "Chat with seller"}
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Write a message to seller</DialogTitle>
+        <DialogTitle>Write a message to {props.receiver.firstName}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
+          {/* <DialogContentText>
             Write a message to seller
-          </DialogContentText>
+          </DialogContentText> */}
           <TextField
             autoFocus
             margin="dense"

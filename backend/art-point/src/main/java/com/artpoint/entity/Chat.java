@@ -29,6 +29,9 @@ public class Chat {
 
     String message;
 
+    @OneToOne
+    Art art;
+
     @CreationTimestamp
 //    @Column(name="timestamp", nullable = false, updatable = false, insertable = false)
     private Timestamp timestamp;
