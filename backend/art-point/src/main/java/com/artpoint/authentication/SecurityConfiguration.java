@@ -62,6 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/",
                         "/image/**",
                         "/art/**",
+                        "/arts/**",
                         "/h2-console/**",
                         "/users",
                         "/user/**",

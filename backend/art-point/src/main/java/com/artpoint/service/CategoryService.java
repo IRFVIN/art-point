@@ -55,6 +55,10 @@ public class CategoryService {
     //     return category.getArts();
     // }
 
+    public List<Art> getArtsByCategoryId(Long id) {
+        return categoryRepository.findById(id).get().getArts();
+    }
+
     public ResponseEntity<Map<String, Object>> getCategoryArts(Long id, int page, int size) {
         try {
             Category category = categoryRepository.findById(id).get();

@@ -35,7 +35,7 @@ ReactDOM.render(
               <Route path="/" element={<Home />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/signin" element={<SignIn />} />
-              <Route path="/art" element={<ArtPageView baseURL="http://localhost:8080/art?" />} />
+              <Route path="/art" element={<ArtPageView baseURL="http://localhost:8080/arts?" />} />
               <Route path="/art/create" element={<ArtCreateForm />} />
               <Route path="art/:artId" element={<ArtDetailView />} />
               <Route path="user/:userId" element={<UserDetailView />} />

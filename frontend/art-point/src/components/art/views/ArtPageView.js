@@ -7,8 +7,14 @@ import CategoryFilter from "../../UI/CategoryFilter";
 import FilterDrawer from "../../UI/FilterDrawer";
 
 const ArtPageView = (props) => {
-    const [arts, setArts] = useState([]);
+    const [arts, setArts] = useState(null);
     const [searchTitle, setSearchTitle] = useState("");
+    const [minPrice, setMinPrice] = useState(null);
+    const [maxPrice, setMaxPrice] = useState(null);
+    const [minPriceSlider, setMinPriceSlider] = useState(null);
+    const [maxPriceSlider, setMaxpriceSlider] = useState(null);
+    const [categoryListFilter, setCategoryListFilter] = useState([]);
+    const [categories, setCategories] = useState(null);
 
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
@@ -34,26 +40,55 @@ const ArtPageView = (props) => {
         console.log(e);
     }
 
-    const onApplyingFilter = (arts) => {
-        console.log(arts);
-        // setArts(arts);
+    const onSelectCategory = (categoryFilters) => {
+        setCategoryListFilter(categoryFilters)
     }
 
     console.log("heeeyeyey");
 
     useEffect(() => {
-        let url = props.baseURL;
-        if (searchTitle != "") url += `title=${searchTitle}`;
-        url += `&page=${currentPage - 1}`;
+        let url = props.baseURL + `&page=${currentPage - 1}`;
 
-        fetch(url).then(res => {
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify({
+                categoryList: categoryListFilter,
+                searchTitle: searchTitle,
+                minPrice: minPrice,
+                maxPrice: maxPrice
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => {
             return res.json();
         }).then(res => {
             setArts(res.art);
             setTotalPages(res.totalPages);
-        });
-    }, [searchTitle, currentPage]);
+            setCategories(res.categories);
+            setMinPrice(res.minPrice);
+            setMaxPrice(res.maxPrice);
+        })
 
+
+    }, [searchTitle, currentPage, categoryListFilter, minPrice, maxPrice]);
+
+    // useEffect(() => {
+    //     let url = props.baseURL;
+    //     if (searchTitle != "") url += `title=${searchTitle}`;
+    //     url += `&page=${currentPage - 1}`;
+
+    //     fetch(url).then(res => {
+    //         return res.json();
+    //     }).then(res => {
+    //         setArts(res.art);
+    //         setTotalPages(res.totalPages);
+    //     });
+    // }, [searchTitle, currentPage]);
+
+    if (!arts || !categories) {
+        return <div>loading arts</div>
+    }
     return (
         <Box sx={{ display: 'flex' }}>
             {/* <CssBaseline /> */}
@@ -77,7 +112,7 @@ const ArtPageView = (props) => {
                 />
             </Box>
             <Box>
-                <FilterDrawer />
+                <FilterDrawer categoryListFilter={categoryListFilter} categories={categories} onCheck={onSelectCategory} />
             </Box>
         </Box>
     );
