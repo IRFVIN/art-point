@@ -3,6 +3,7 @@ package com.artpoint.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.artpoint.entity.Art;
 import com.artpoint.entity.Category;
 import com.artpoint.repository.CategoryRepository;
 
@@ -39,5 +40,10 @@ public class CategoryService {
 
     public void deleteCategory(Long id) {
         categoryRepository.deleteById(id);
+    }
+
+    public List<Art> getCategoryArts(Long id) {
+        Category category = categoryRepository.findById(id).get();
+        return category.getArts();
     }
 }

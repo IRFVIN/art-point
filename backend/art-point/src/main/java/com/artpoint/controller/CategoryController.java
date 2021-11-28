@@ -2,6 +2,7 @@ package com.artpoint.controller;
 
 import java.util.List;
 
+import com.artpoint.entity.Art;
 import com.artpoint.entity.Category;
 import com.artpoint.service.CategoryService;
 
@@ -45,5 +46,10 @@ public class CategoryController {
     @DeleteMapping("/category/{id}")
     public void deleteArt(@PathVariable Long id) {
         categoryService.deleteCategory(id);
+    }
+
+    @GetMapping("/category/{id}/arts")
+    public List<Art> getCategoryArts(@PathVariable Long id) {
+        return categoryService.getCategoryArts(id);
     }
 }
