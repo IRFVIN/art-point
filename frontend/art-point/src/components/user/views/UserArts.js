@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Navigate, useParams } from "react-router";
 import ArtCardView from "../../art/views/ArtCardView";
 import ArtPageView from "../../art/views/ArtPageView";
+import UserArtPageView from "../../art/views/UserArtPageView";
 
 const UserArts = (props) => {
 
@@ -30,7 +31,7 @@ const UserArts = (props) => {
     const baseURL = `http://localhost:8080/user/${userId}/arts?`;
 
     return (
-        <ArtPageView baseURL={baseURL} />
+        <UserArtPageView baseURL={baseURL} />
     );
 
     /*

@@ -87,7 +87,9 @@ public class ArtService {
         List<Art> arts = new ArrayList<>();
         for (Category category : categories) {
             List<Art> tempArts = categoryService.getArtsByCategoryId(category.getId());
-            arts = union(arts, tempArts);
+            if (arts.isEmpty()) arts = tempArts;
+            else
+            arts = intersection(arts, tempArts);
         }
 
         return arts;
@@ -225,4 +227,8 @@ public class ArtService {
     public void deleteArt(long id) {
         artRepository.deleteById(id);
     }
+
+
+
+
 }
