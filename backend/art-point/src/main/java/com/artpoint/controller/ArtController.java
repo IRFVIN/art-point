@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.artpoint.entity.Art;
+import com.artpoint.entity.ArtFilters;
 import com.artpoint.service.ArtService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,25 @@ import org.springframework.web.multipart.MultipartFile;
 public class ArtController {
     @Autowired
     private ArtService artService;
+
+//    @Operation(summary = "Get a list of all art")
+//    @ApiResponses(value = {
+//            @ApiResponse(
+//                    responseCode = "200",
+//                    description = "Successfully fetched list of all art",
+//                    content = {@Content(mediaType = "application/json")}
+//            )
+//    })
+    @PostMapping (value = "/arts", consumes = "application/json")
+//    @ResponseBody
+    public ResponseEntity<Map<String, Object>> getAllArts(
+            @RequestBody ArtFilters filters,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        System.out.println(filters);
+        return artService.getAllArts(filters, page, size);
+    }
 
     @Operation(summary = "Get a list of all art")
     @ApiResponses(value = {

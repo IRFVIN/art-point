@@ -34,11 +34,17 @@ function FilterDrawer(props) {
         setMobileOpen(!mobileOpen);
     };
 
-    const [checked, setChecked] = React.useState([]);
-    const categories = ['category1', 'category2', 'category3', 'category4'];
+    // const [checked, setChecked] = React.useState([]);
+    const [checked, setChecked] = React.useState(props.categoryListFilter);
+    // const categories = ['category1', 'category2', 'category3', 'category4'];
+
+    const getIndexOf = (cat) => {
+        return checked.map(category => category.id).indexOf(cat.id);
+    }
 
     const handleToggle = (value) => () => {
-        const currentIndex = checked.indexOf(value);
+        // const currentIndex = checked.indexOf(value);
+        const currentIndex = getIndexOf(value);
         const newChecked = [...checked];
 
         if (currentIndex === -1) {
@@ -48,6 +54,8 @@ function FilterDrawer(props) {
         }
 
         setChecked(newChecked);
+        console.log(newChecked);
+        props.onCheck(newChecked);
     };
 
     const drawer = (
@@ -72,25 +80,26 @@ function FilterDrawer(props) {
                     <ListItemText primary="categories" />
                 </ListItem>
                 <Divider />
-                {categories.map((value) => {
-                    const labelId = `checkbox-list-label-${value}`;
+                {props.categories.map((category) => {
+                    const labelId = `checkbox-list-label-${category.name}`;
 
                     return (
                         <ListItem
-                            key={value}
+                            key={category.id}
                             disablePadding
                         >
-                            <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
+                            <ListItemButton role={undefined} onClick={handleToggle(category)} dense>
                                 <ListItemIcon>
                                     <Checkbox
                                         edge="start"
-                                        checked={checked.indexOf(value) !== -1}
+                                        checked={getIndexOf(category) !== -1}
+                                        // checked={getIndexOf(category) !== -1}
                                         tabIndex={-1}
                                         disableRipple
                                         inputProps={{ 'aria-labelledby': labelId }}
                                     />
                                 </ListItemIcon>
-                                <ListItemText id={labelId} primary={value} />
+                                <ListItemText id={labelId} primary={category.name} />
                             </ListItemButton>
                         </ListItem>
                     );
@@ -99,13 +108,17 @@ function FilterDrawer(props) {
             <Divider />
             <List>
                 <ListItem>
-                    <ListItemText primary="sory by price" />
+                    <ListItemText primary="price range" />
                 </ListItem>
 
                 <Divider />
 
                 <ListItem>
-                    <PriceFilter />
+                    <PriceFilter
+                        actualPriceRange={props.actualPriceRange}
+                        range={props.range}
+                        onPriceRangeChange={props.onPriceRange}
+                    />
                 </ListItem>
 
             </List>
@@ -117,6 +130,8 @@ function FilterDrawer(props) {
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
+    if (!props.categories)
+        return <div>Loading categories</div>;
     return (<Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
