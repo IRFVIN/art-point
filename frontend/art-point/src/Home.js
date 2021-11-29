@@ -57,6 +57,8 @@ import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ArtGridView from './components/art/views/ArtGridView';
 import ArtPageView from './components/art/views/ArtPageView';
+import CategoryGridView from './components/category/views/CategoryGridView';
+import FeaturedArtsCarousel from './components/UI/FeaturedArtsCarousel';
 
 function Copyright() {
   return (
@@ -111,13 +113,38 @@ export default function Album() {
               <Button href="/art" variant="contained">Discover Art</Button>
               <Button href="/art/create" variant="outlined">Sell your creation</Button>
             </Stack>
+
           </Container>
         </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
-          {/* End hero unit */}
-          <Typography variant="h5" color="primary" gutterBottom>Featured Art</Typography>
-          <ArtPageView baseURL="http://localhost:8080/art?" />
-        </Container>
+        {/* <Container sx={{ py: 8 }} maxWidth="md"> */}
+        {/* End hero unit */}
+        {/* <Typography variant="h5" color="primary" gutterBottom>Featured Art</Typography> */}
+        {/* <ArtPageView baseURL="http://localhost:8080/arts?" /> */}
+        {/* </Container> */}
+
+        <Typography
+          component="h1"
+          variant="h2"
+          align="center"
+          color="text.primary"
+          gutterBottom
+        >
+          Featured Arts
+        </Typography>
+        <FeaturedArtsCarousel />
+
+        <Typography
+          component="h1"
+          variant="h2"
+          align="center"
+          color="text.primary"
+          gutterBottom
+        >
+          Categories
+        </Typography>
+
+        <CategoryGridView />
+
       </main>
       {/* Footer */}
       <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
@@ -134,7 +161,7 @@ export default function Album() {
         </Typography>
         <Copyright />
         <Link marginRight={3}>Terms and Conditions</Link>
-        <Link>Privacy</Link>        
+        <Link>Privacy</Link>
       </Box>
       {/* End footer */}
     </ThemeProvider>

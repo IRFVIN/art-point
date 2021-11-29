@@ -58,6 +58,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf()
                 .disable()
                 .authorizeRequests()
+                .regexMatchers("/category/\\d+/arts\\?page=\\d+").permitAll()
+//                .regexMatchers("\/myPage\?param1=tata(&.*|$)")
+//                .regexMatchers("/category/.*").permitAll()
                 .antMatchers("/authenticate",
                         "/",
                         "/image/**",

@@ -75,6 +75,8 @@ public class CategoryService {
             response.put("currentPage", pageArts.getNumber());
             response.put("totalItems", pageArts.getTotalElements());
             response.put("totalPages", pageArts.getTotalPages());
+            response.put("categoryName", category.getName());
+
 
             return new ResponseEntity<>(response, HttpStatus.OK);
 

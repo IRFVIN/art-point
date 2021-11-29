@@ -21,6 +21,7 @@ import ChatNotification from './components/chat/ChatNotification';
 import UserArts from './components/user/views/UserArts';
 import AccountSettings from './components/user/views/AccountSettings';
 import ArtPageView from './components/art/views/ArtPageView';
+import CategoryPageView from './components/category/views/CategoryPageView';
 import SellerPageView from './components/seller/SellerPageView';
 
 let persistor = persistStore(store)
@@ -36,6 +37,7 @@ ReactDOM.render(
               <Route path="/signup" element={<SignUp />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/art" element={<ArtPageView baseURL="http://localhost:8080/arts?" />} />
+              <Route path="/category/:categoryId" element={<CategoryPageView />} />
               <Route path="/art/create" element={<ArtCreateForm />} />
               <Route path="art/:artId" element={<ArtDetailView />} />
               <Route path="user/:userId" element={<UserDetailView />} />
