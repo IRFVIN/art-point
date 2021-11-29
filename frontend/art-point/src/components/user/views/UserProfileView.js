@@ -18,6 +18,9 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import StarBorder from '@mui/icons-material/StarBorder';
 import { Link } from "react-router-dom";
 
+import LandscapeIcon from '@mui/icons-material/Landscape';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const UserProfileView = () => {
 
@@ -41,7 +44,7 @@ const UserProfileView = () => {
 
     return (
         <div>
-            <Typography variant="h3">Hello {user.firstName}</Typography>
+            <Typography variant="h3">Hi, {user.firstName}!</Typography>
             <List
                 sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
                 component="nav"
@@ -51,16 +54,16 @@ const UserProfileView = () => {
                     to={"/user/" + user.id + "/arts"}
                 >
                     <ListItemIcon>
-                        <SendIcon />
+                        <LandscapeIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Your Arts" />
+                    <ListItemText primary="Your Art" />
                 </ListItemButton>
                 <ListItemButton
                     component={Link}
                     to="/art/create"
                 >
                     <ListItemIcon>
-                        <DraftsIcon />
+                        <AddCircleIcon />
                     </ListItemIcon>
                     <ListItemText primary="Add Art Item" />
                 </ListItemButton>
@@ -70,7 +73,7 @@ const UserProfileView = () => {
                     to="/setting"
                 >
                     <ListItemIcon>
-                        <DraftsIcon />
+                        <SettingsIcon />
                     </ListItemIcon>
                     <ListItemText primary="Account Settings" />
                 </ListItemButton>

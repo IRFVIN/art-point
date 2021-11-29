@@ -7,6 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useSelector } from 'react-redux';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function ArtDeleteDialogForm(props) {
     const [open, setOpen] = React.useState(false);
@@ -43,14 +44,14 @@ export default function ArtDeleteDialogForm(props) {
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <Button size="small" variant="outlined"  startIcon={<DeleteIcon/>} onClick={handleClickOpen}>
                 Delete
             </Button>
             <Dialog
                 component="form"
                 onSubmit={handleSubmit}
                 open={open} onClose={handleClose}>
-                <DialogTitle>Write a message to seller</DialogTitle>
+                <DialogTitle>Confirm Delete</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         Are you sure you want to delete?

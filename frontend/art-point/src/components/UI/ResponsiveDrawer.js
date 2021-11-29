@@ -5,6 +5,8 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
+import ExploreIcon from '@mui/icons-material/Explore';
+import GradeIcon from '@mui/icons-material/Grade';
 import IconButton from '@mui/material/IconButton';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
@@ -19,7 +21,7 @@ import { Outlet } from 'react-router';
 import ButtonAppBar from './ButtonAppBar';
 import { Link } from 'react-router-dom';
 import TitleSearchBar from './TitleSearchBar';
-
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 
 const drawerWidth = 240;
 
@@ -42,9 +44,9 @@ function ResponsiveDrawer(props) {
                     to="/art"
                 >
                     <ListItemIcon>
-                        <InboxIcon />
+                        <ExploreIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Discover Arts" />
+                    <ListItemText primary="Discover Art" />
                 </ListItem>
                 {/* <TitleSearchBar /> */}
             </List>
@@ -57,9 +59,9 @@ function ResponsiveDrawer(props) {
                     to="/sellers/featured"
                 >
                     <ListItemIcon>
-                        <InboxIcon />
+                        <GradeIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Featured sellers" />
+                    <ListItemText primary="Featured artists" />
                 </ListItem>
 
                 <ListItem
@@ -67,9 +69,9 @@ function ResponsiveDrawer(props) {
                     to="/sellers/rated"
                 >
                     <ListItemIcon>
-                        <InboxIcon />
+                        <TrendingUpIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Top rated sellers" />
+                    <ListItemText primary="Top rated artists" />
                 </ListItem>
 
                 <ListItem
@@ -77,9 +79,9 @@ function ResponsiveDrawer(props) {
                     to="/sellers"
                 >
                     <ListItemIcon>
-                        <InboxIcon />
+                        <ExploreIcon />
                     </ListItemIcon>
-                    <ListItemText primary="All sellers" />
+                    <ListItemText primary="Discover artists" />
                 </ListItem>
 
             </List>

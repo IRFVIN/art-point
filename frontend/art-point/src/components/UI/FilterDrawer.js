@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
+import CategoryIcon from '@mui/icons-material/Category';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import IconButton from '@mui/material/IconButton';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
@@ -23,6 +25,7 @@ import ArtPageView from '../art/views/ArtPageView';
 import { Checkbox, ListItemButton } from '@mui/material';
 import PriceFilter from './PriceFilter';
 
+import PriceChangeIcon from '@mui/icons-material/PriceChange';
 
 const drawerWidth = 180;
 
@@ -67,9 +70,9 @@ function FilterDrawer(props) {
                 <ListItem
                 >
                     <ListItemIcon>
-                        <InboxIcon />
+                        <FilterAltIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Filter" />
+                    <ListItemText primary="Filter by" />
                 </ListItem>
                 {/* <TitleSearchBar /> */}
             </List>
@@ -77,7 +80,8 @@ function FilterDrawer(props) {
             <Divider />
             <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
                 <ListItem>
-                    <ListItemText primary="categories" />
+                    <ListItemIcon> <CategoryIcon /> </ListItemIcon>
+                    <ListItemText primary="Category" />
                 </ListItem>
                 <Divider />
                 {props.categories.map((category) => {
@@ -108,7 +112,8 @@ function FilterDrawer(props) {
             <Divider />
             <List>
                 <ListItem>
-                    <ListItemText primary="price range" />
+                    <ListItemIcon> <PriceChangeIcon /> </ListItemIcon>
+                    <ListItemText primary="Price range" />
                 </ListItem>
 
                 <Divider />

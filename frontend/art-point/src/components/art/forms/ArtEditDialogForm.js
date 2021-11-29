@@ -9,6 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { Navigate } from 'react-router';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function ArtEditDialogForm(props) {
     const [open, setOpen] = React.useState(false);
@@ -73,7 +74,7 @@ export default function ArtEditDialogForm(props) {
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <Button size="small" variant="outlined" startIcon={<EditIcon/>} onClick={handleClickOpen}>
                 Edit
             </Button>
             <Dialog
@@ -84,7 +85,7 @@ export default function ArtEditDialogForm(props) {
                 <DialogTitle>Edit</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Add the details you want to update
+                        Edit the details you want to update
                     </DialogContentText>
 
 

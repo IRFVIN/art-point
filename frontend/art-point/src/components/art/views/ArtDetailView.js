@@ -20,6 +20,7 @@ const ArtDetailView = () => {
         fetch(url).then(res => res.json()).then(
             res => {
                 setArt(res);
+                //console.log(res);
             }
         );
     }, [url]);
@@ -76,7 +77,7 @@ const ArtDetailView = () => {
                             by {art.owner ? art.owner.firstName : "null"}
                         </Typography>
 
-                        <Rating name="read-only" value={art.rating} precision={0.5} readOnly />
+                        <Rating name="read-only" value={parseFloat(art.owner.rating)} precision={0.5} readOnly />
 
                         <Typography variant="h6" color="textSecondary">
                             Description

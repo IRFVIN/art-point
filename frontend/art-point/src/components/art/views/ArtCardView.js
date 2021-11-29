@@ -76,6 +76,7 @@ const ArtCardView = (props) => {
             </CardContent>
             <CardActions>
                 <Button
+                    sx = {{mr : 1}}
                     component={Link} to={"/art/" + props.art.id}
                     size="small" variant="outlined"
                     startIcon={<PreviewIcon />}

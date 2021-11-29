@@ -111,7 +111,7 @@ export default function Album() {
               justifyContent="center"
             >
               <Button href="/art" variant="contained">Discover Art</Button>
-              <Button href="/art/create" variant="outlined">Sell your creation</Button>
+              <Button href="/art/create" variant="outlined">Sell your Art</Button>
             </Stack>
 
           </Container>
@@ -123,24 +123,24 @@ export default function Album() {
         {/* </Container> */}
 
         <Typography
-          component="h1"
-          variant="h2"
+          //component="h1"
+          variant="h3"
           align="center"
           color="text.primary"
           gutterBottom
         >
-          Featured Arts
+          Featured Art
         </Typography>
         <FeaturedArtsCarousel />
 
         <Typography
-          component="h1"
-          variant="h2"
+          //component="h1"
+          variant="h3"
           align="center"
           color="text.primary"
           gutterBottom
         >
-          Categories
+          Explore Categories
         </Typography>
 
         <CategoryGridView />

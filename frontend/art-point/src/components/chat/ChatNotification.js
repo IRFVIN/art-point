@@ -37,9 +37,11 @@ const ChatNotification = () => {
     }
     return (
         <div>
-            <Typography variant="h1">
+            <Typography variant="h3">
                 Notifications
             </Typography>
+            <Typography>Messages from buyers, if any, show up here!</Typography>
+
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 12 }}>
                 {chats.map(chat => (
                     <Grid item xs={12} key={chat.id}>

@@ -111,6 +111,7 @@ const ArtPageView = (props) => {
                 <form onSubmit={handleSubmit}>
                     <TextField fullWidth variant="outlined" placeholder="Search by Title" onChange={handleSearchTitleChange} />
                 </form>
+                <br/>
                 {/* <Toolbar /> */}
 
                 {/* <CategoryFilter onApplyingFilter={onApplyingFilter} /> */}
