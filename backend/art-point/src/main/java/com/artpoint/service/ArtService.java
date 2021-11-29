@@ -54,8 +54,8 @@ public class ArtService {
             response.put("currentPage", pageArts.getNumber());
             response.put("totalItems", pageArts.getTotalElements());
             response.put("totalPages", pageArts.getTotalPages());
-            response.put("minPrice", artRepository.getMinPrice());
-            response.put("maxPrice", artRepository.getMaxPrice());
+            response.put("minPrice", Math.floor(artRepository.getMinPrice()));
+            response.put("maxPrice", Math.ceil(artRepository.getMaxPrice()));
             response.put("categories", categoryService.getAllCategories());
 
             return new ResponseEntity<>(response, HttpStatus.OK);

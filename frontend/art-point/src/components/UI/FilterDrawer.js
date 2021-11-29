@@ -108,14 +108,18 @@ function FilterDrawer(props) {
             <Divider />
             <List>
                 <ListItem>
-                    <ListItemText primary="sory by price" />
+                    <ListItemText primary="price range" />
                 </ListItem>
 
                 <Divider />
 
-                {/* <ListItem>
-                    <PriceFilter />
-                </ListItem> */}
+                <ListItem>
+                    <PriceFilter
+                        actualPriceRange={props.actualPriceRange}
+                        range={props.range}
+                        onPriceRangeChange={props.onPriceRange}
+                    />
+                </ListItem>
 
             </List>
 

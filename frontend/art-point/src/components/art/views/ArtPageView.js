@@ -12,7 +12,8 @@ const ArtPageView = (props) => {
     const [minPrice, setMinPrice] = useState(null);
     const [maxPrice, setMaxPrice] = useState(null);
     const [minPriceSlider, setMinPriceSlider] = useState(null);
-    const [maxPriceSlider, setMaxpriceSlider] = useState(null);
+    const [maxPriceSlider, setMaxPriceSlider] = useState(null);
+    const [filterByPriceRange, setFilterByPriceRange] = useState(null);
     const [categoryListFilter, setCategoryListFilter] = useState([]);
     const [categories, setCategories] = useState(null);
 
@@ -44,6 +45,12 @@ const ArtPageView = (props) => {
         setCategoryListFilter(categoryFilters)
     }
 
+    const onPriceRange = (priceRange) => {
+        setMinPriceSlider(priceRange[0]);
+        setMaxPriceSlider(priceRange[1]);
+        console.log("From ArtPage: " + priceRange);
+    }
+
     console.log("heeeyeyey");
 
     useEffect(() => {
@@ -54,8 +61,8 @@ const ArtPageView = (props) => {
             body: JSON.stringify({
                 categoryList: categoryListFilter,
                 searchTitle: searchTitle,
-                minPrice: minPrice,
-                maxPrice: maxPrice
+                minPrice: minPriceSlider,
+                maxPrice: maxPriceSlider
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -68,10 +75,15 @@ const ArtPageView = (props) => {
             setCategories(res.categories);
             setMinPrice(res.minPrice);
             setMaxPrice(res.maxPrice);
+
+            if (!minPriceSlider || !maxPriceSlider) {
+                setMinPriceSlider(res.minPrice);
+                setMaxPriceSlider(res.maxPrice);
+            }
         })
 
 
-    }, [searchTitle, currentPage, categoryListFilter, minPrice, maxPrice]);
+    }, [searchTitle, currentPage, categoryListFilter, minPriceSlider, maxPriceSlider]);
 
     // useEffect(() => {
     //     let url = props.baseURL;
@@ -86,7 +98,7 @@ const ArtPageView = (props) => {
     //     });
     // }, [searchTitle, currentPage]);
 
-    if (!arts || !categories) {
+    if (!arts || !categories || !minPriceSlider || !maxPriceSlider) {
         return <div>loading arts</div>
     }
     return (
@@ -112,7 +124,13 @@ const ArtPageView = (props) => {
                 />
             </Box>
             <Box>
-                <FilterDrawer categoryListFilter={categoryListFilter} categories={categories} onCheck={onSelectCategory} />
+                <FilterDrawer
+                    actualPriceRange={[minPrice, maxPrice]}
+                    range={[minPriceSlider, maxPriceSlider]}
+                    categoryListFilter={categoryListFilter}
+                    categories={categories} onCheck={onSelectCategory}
+                    onPriceRange={onPriceRange}
+                />
             </Box>
         </Box>
     );
