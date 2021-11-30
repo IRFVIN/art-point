@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
+import CategoryIcon from '@mui/icons-material/Category';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import ExploreIcon from '@mui/icons-material/Explore';
@@ -14,8 +15,9 @@ import { Outlet } from 'react-router';
 import ButtonAppBar from './ButtonAppBar';
 import { Link } from 'react-router-dom';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import { Typography } from '@mui/material';
 
-const drawerWidth = 240;
+const drawerWidth = 180;
 
 function ResponsiveDrawer(props) {
     const { window } = props;
@@ -28,7 +30,7 @@ function ResponsiveDrawer(props) {
     const drawer = (
         <div>
             <Toolbar />
-            <Divider />
+            <Typography variant="h6" align="center" color="textPrimary">Art</Typography>
             <List>
 
                 <ListItem
@@ -38,13 +40,44 @@ function ResponsiveDrawer(props) {
                     <ListItemIcon>
                         <ExploreIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Discover Art" />
+                    <ListItemText primary="Discover" />
                 </ListItem>
                 {/* <TitleSearchBar /> */}
+
+                <ListItem
+                    component={Link}
+                    to="/"
+                >
+                    <ListItemIcon>
+                        <GradeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Featured" />
+                </ListItem>
+
+                <ListItem
+                    component={Link}
+                    to="/art"
+                >
+                    <ListItemIcon>
+                        <CategoryIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Categories" />
+                </ListItem>
             </List>
 
             <Divider />
+            <Typography variant="h6" align="center" color="textPrimary">Artists</Typography>
             <List>
+
+                 <ListItem
+                    component={Link}
+                    to="/sellers"
+                >
+                    <ListItemIcon>
+                        <ExploreIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Discover" />
+                </ListItem>
 
                 <ListItem
                     component={Link}
@@ -53,7 +86,7 @@ function ResponsiveDrawer(props) {
                     <ListItemIcon>
                         <GradeIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Featured artists" />
+                    <ListItemText primary="Featured" />
                 </ListItem>
 
                 <ListItem
@@ -63,17 +96,7 @@ function ResponsiveDrawer(props) {
                     <ListItemIcon>
                         <TrendingUpIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Top rated artists" />
-                </ListItem>
-
-                <ListItem
-                    component={Link}
-                    to="/sellers"
-                >
-                    <ListItemIcon>
-                        <ExploreIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Discover artists" />
+                    <ListItemText primary="Top rated" />
                 </ListItem>
 
             </List>
