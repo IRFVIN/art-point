@@ -53,7 +53,9 @@ owner	User{...}
 }
 */
 
-import { Alert, Button, Card, CardActions, CardContent, Collapse, TextField } from '@mui/material';
+import { AddPhotoAlternate, DescriptionOutlined, TitleOutlined } from '@mui/icons-material';
+import { Alert, Button, Card, CardActions, CardContent, Collapse, TextField, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
@@ -108,13 +110,16 @@ export default function ArtCreateForm() {
   }
   return (
     <div>
+      <Typography variant="h4" gutterBottom>New Art Details</Typography>
       <Collapse in={alert}>
-        <Alert>Art Item added</Alert>
+        <Alert>Your Art has been added!</Alert>
       </Collapse>
       <form method="POST" encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
 
         <Card>
           <CardContent>
+            <Box sx={{ display: 'flex', alignItems: 'flex-end'}}>
+              <TitleOutlined/>
             <div>
               <TextField
                 fullWidth
@@ -123,10 +128,13 @@ export default function ArtCreateForm() {
                 {...register("title", { required: true, maxLength: 100 })}
               />
             </div>
+            </Box>
             {/* <input type="text" placeholder="Title" {...register("title", { required: true, maxLength: 100 })} />
     <br /> */}
 
             <div>
+             <Box sx={{ display: 'flex', alignItems: 'flex-end'}}>
+               <DescriptionOutlined />
               <TextField
                 fullWidth
                 variant="standard"
@@ -135,23 +143,32 @@ export default function ArtCreateForm() {
                 label="description"
                 {...register("description", { required: true, maxLength: 500 })}
               />
+              </Box>
             </div>
 
             {/* <textarea placeholder="Description" {...register("description", { required: true, maxLength: 500 })} />
     <br /> */}
 
             <div>
-              <TextField
-                fullWidth
-                variant="standard"
-                label="price"
-                {...register("price", { required: true })}
-              />
+              <Box sx={{ display: 'flex', alignItems: 'flex-end'}}>
+                <Typography variant="h5" paddingLeft={0.6} paddingRight={1}>₹</Typography>
+                <TextField
+                  fullWidth
+                  variant="standard"
+                  label="price"
+                  {...register("price", { required: true })}
+                />
+              </Box>
             </div>
 
             {/* <input type="number" placeholder="Price" {...register("price", { required: true })} />
     <br /> */}
             <div>
+              
+              <Box sx={{ display: 'flex', alignItems: 'flex-end', paddingTop:2, paddingBottom:1}}>
+                <AddPhotoAlternate/>
+                <Typography>Upload Art Image</Typography>
+              </Box>
               <input type="file" alt="Art Image" placeholder="Upload Art Image" {...register("image", { required: true })} />
             </div>
 

@@ -19,7 +19,9 @@ import { logout } from '../../store/store';
 import LandscapeIcon from '@mui/icons-material/Landscape';
 import LoginIcon from '@mui/icons-material/Login';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-
+import { ListItemIcon, ListItemText } from '@mui/material';
+import PersonIcon from '@mui/icons-material/Person';
+import LogoutIcon from '@mui/icons-material/Logout';
 const drawerWidth = 240;
 
 
@@ -98,8 +100,23 @@ export default function ButtonAppBar(props) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem component={Link} to="/profile" onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+            <MenuItem component={Link} to="/profile" onClick={handleMenuClose}>
+                <ListItemIcon>
+                    <PersonIcon />
+                </ListItemIcon>
+                <ListItemText>
+                    Your Profile
+                </ListItemText>
+            </MenuItem>
+            
+            <MenuItem onClick={logoutHandler}>
+            <ListItemIcon>
+                <LogoutIcon />
+                </ListItemIcon>
+                <ListItemText>
+                    Logout
+                </ListItemText>
+            </MenuItem>
         </Menu>
     );
 

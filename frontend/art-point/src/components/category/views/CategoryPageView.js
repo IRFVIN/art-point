@@ -39,7 +39,7 @@ const CategoryPageView = (props) => {
 
 
     if (!arts) {
-        return <div>loading arts</div>
+        return <div>Loading, please wait...</div>
     }
     return (
         <Box sx={{ display: 'flex' }}>

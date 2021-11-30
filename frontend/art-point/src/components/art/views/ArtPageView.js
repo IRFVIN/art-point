@@ -1,8 +1,9 @@
 import ArtGridView from "./ArtGridView";
 import { useEffect, useState } from "react";
-import { Pagination, TextField } from "@mui/material";
+import { InputAdornment, Pagination, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import FilterDrawer from "../../UI/FilterDrawer";
+import { SearchOutlined } from "@mui/icons-material";
 
 const ArtPageView = (props) => {
     const [arts, setArts] = useState(null);
@@ -97,7 +98,7 @@ const ArtPageView = (props) => {
     // }, [searchTitle, currentPage]);
 
     if (!arts || !categories || !minPriceSlider || !maxPriceSlider) {
-        return <div>loading arts</div>
+        return <div>Loading, please wait...</div>
     }
     return (
         <Box sx={{ display: 'flex' }}>
@@ -107,7 +108,11 @@ const ArtPageView = (props) => {
                 {/* <FilterDrawer /> */}
                 {/* <div> */}
                 <form onSubmit={handleSubmit}>
-                    <TextField fullWidth variant="outlined" placeholder="Search by Title" onChange={handleSearchTitleChange} />
+                    <TextField
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start"> <SearchOutlined/> </InputAdornment>,
+                        }}
+                        fullWidth variant="outlined" placeholder="Search by Title" onChange={handleSearchTitleChange} />
                 </form>
                 <br/>
                 {/* <Toolbar /> */}

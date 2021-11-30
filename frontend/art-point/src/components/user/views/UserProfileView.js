@@ -57,7 +57,7 @@ const UserProfileView = () => {
                     <ListItemIcon>
                         <AddCircleIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Add Art Item" />
+                    <ListItemText primary="Add New Art" />
                 </ListItemButton>
 
                 <ListItemButton

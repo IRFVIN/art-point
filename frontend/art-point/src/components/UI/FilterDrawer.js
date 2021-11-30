@@ -125,7 +125,7 @@ function FilterDrawer(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     if (!props.categories)
-        return <div>Loading categories</div>;
+        return <div>Loading categories, please wait...</div>;
     return (<Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}

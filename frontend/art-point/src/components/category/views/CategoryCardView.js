@@ -55,7 +55,7 @@ const CategoryCardView = (props) => {
     // }
 
     if (!imgObjURL) {
-        return <div>loading</div>;
+        return <div>Loading, please wait...</div>;
     }
 
     return (
