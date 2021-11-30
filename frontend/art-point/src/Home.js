@@ -150,8 +150,11 @@ export default function Album() {
           Bridging the gap between Art Creators and Art Admirers
         </Typography>
         <Copyright />
-        <Link marginRight={3}>Terms and Conditions</Link>
-        <Link>Privacy</Link>
+        <Box sx={{display: 'flex', justifyContent: 'center'}}>
+          <Link marginRight={1}>Terms and Conditions</Link>
+          &#8226;
+          <Link marginLeft={1}>Privacy</Link>
+        </Box>
       </Box>
       {/* End footer */}
     </ThemeProvider>
