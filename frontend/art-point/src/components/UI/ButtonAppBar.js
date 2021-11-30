@@ -18,7 +18,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/store';
 // import TemporaryDrawer from './TemporaryDrawer';
 import LandscapeIcon from '@mui/icons-material/Landscape';
-
+import LoginIcon from '@mui/icons-material/Login';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 const drawerWidth = 240;
 
@@ -47,10 +48,10 @@ export default function ButtonAppBar(props) {
     // const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
     let content = <div>
-        <Button color="inherit" href="/signup" >
+        <Button startIcon={<PersonAddIcon/>} color="inherit" href="/signup" >
             Sign Up
         </Button>
-        <Button color="inherit" href="/signin">Sign In</Button>
+        <Button startIcon={<LoginIcon/>} color="inherit" href="/signin">Sign In</Button>
     </div>;
 
 

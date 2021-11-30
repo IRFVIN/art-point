@@ -98,9 +98,10 @@ const ArtDetailView = () => {
                     >
                         Add to Cart
                     </Button> */}
-
+                        <Box sx={{ display: 'inline-flex' }}>
                         {showOPtions ? <ArtDeleteDialogForm art={art} /> : <ChatFormDialog receiver={art.owner} art={art} />}
                         {showOPtions ? <ArtEditDialogForm art={art} /> : null}
+                        </Box>
                     </Grid>
                 </Grid>
             </Box>
