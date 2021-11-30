@@ -1,12 +1,13 @@
 package com.artpoint.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,10 +17,27 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    private String emailId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String email;
+    private String password;
+    private String username;
     private String firstName;
     private String lastName;
     private String address;
-    private String mobile;
-    private double ratings;
+    private String phone;
+    private double rating;
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+//    @JsonManagedReference
+    @JsonIgnore
+    private List<Art> myArts;
+
+    @OneToMany(mappedBy = "sender")
+    @JsonIgnore
+    private List<Chat> chatsTo;
+
+    @OneToMany(mappedBy = "receiver")
+    @JsonIgnore
+    private List<Chat> chatsFrom;
 }
