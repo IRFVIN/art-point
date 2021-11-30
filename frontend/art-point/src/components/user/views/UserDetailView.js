@@ -3,8 +3,8 @@ import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Link } from "react-router-dom";
+import { LandscapeOutlined } from "@mui/icons-material";
 
 const UserDetailView = () => {
     const [user, setUser] = useState(null);
@@ -41,8 +41,8 @@ const UserDetailView = () => {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={3}>
-                <Grid item md>
+            <Grid container spacing={2}>
+                <Grid item md={4}>
                     <CardMedia
                         component="div"
                         height="140"
@@ -58,38 +58,43 @@ const UserDetailView = () => {
                     // image={imgObjURL}
                     // alt={user.firstName}
                     >
+                    <Typography sx={{p : 5}} variant="h3">
                         {user.firstName.charAt(0) + user.lastName.charAt(0)}
+                    </Typography>
                     </CardMedia>
                 </Grid>
-                <Grid item md>
+                <Grid item md={8}>
                     <Typography variant="h4" color="primary">
                         {user.firstName + " " + user.lastName}
                     </Typography>
                     <Typography color="textSecondary">
-                        by {user.email}
+                        {user.email}
                     </Typography>
 
                     <Rating name="read-only" value={user.rating} readOnly />
-
+                    {/* 
                     <Typography variant="h6" color="textSecondary">
                         Description
                     </Typography>
                     <Typography color="textPrimary">
-                        {/* {art.description} */}
+                        {art.description}
                     </Typography>
+                    
 
                     <Typography style={{ marginTop: 10 }} variant="h6" color="textSecondary">
-                        {/* Price: &#8377;{art.price} */}
+                        Price: &#8377;{art.price}
                     </Typography>
+                    */}
+                    <br/>
 
                     <Button style={{ marginTop: 10 }}
                         //component={Link} to={'#'}
                         size="small" variant="contained"
-                        startIcon={<AddShoppingCartIcon />}
+                        startIcon={<LandscapeOutlined />}
                         component={Link}
                         to={"/user/" + user.id + "/arts"}
                     >
-                        See My Arts
+                        {user.firstName}'s Art
                     </Button>
                 </Grid>
             </Grid>

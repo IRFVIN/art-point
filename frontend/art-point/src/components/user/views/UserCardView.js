@@ -1,15 +1,10 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Rating, Typography } from "@mui/material";
-import { deepOrange, green } from '@mui/material/colors';
-import Avatar from '@mui/material/Avatar';
-
+import { Avatar, Button, Card, CardActions, CardContent, CardMedia, Rating, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import PreviewIcon from '@mui/icons-material/Preview';
+import { Box } from "@mui/system";
 
 const UserCardView = (props) => {
-    const [imgObjURL, setImgObjURL] = useState('');
+    //const [imgObjURL, setImgObjURL] = useState('');
 
     //const imageURL = "http://localhost:8080/images/" + props.art.id + ".png";
     // const imageURL = "http://localhost:8080/image/" + props.user.id;
@@ -31,6 +26,7 @@ const UserCardView = (props) => {
                 height="140"
                 sx={{
                     textAlign: "center",
+                    alignContent: "center",
                     height: "150px",
                     background: "#512DA8",
                     fontSize: "50px",
@@ -41,16 +37,19 @@ const UserCardView = (props) => {
                 // image={imgObjURL}
                 alt={props.user.firstName}
             >
-                {props.user.firstName.charAt(0) + props.user.lastName.charAt(0)}
+                <Typography sx={{p : 5}} variant="h3">
+                    {props.user.firstName.charAt(0) + props.user.lastName.charAt(0)}
+                </Typography>
             </CardMedia>
 
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     {props.user.firstName}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {props.user.firstName}
-                </Typography>
+                <Box sx={{display: 'flex'}}>
+                    <Typography component="legend">Rating</Typography>
+                    <Rating name="read-only" value={props.user.rating} readOnly />
+                </Box>
             </CardContent>
             <CardActions>
                 <Button
@@ -60,8 +59,7 @@ const UserCardView = (props) => {
                 >
                     View
                 </Button>
-                <Typography component="legend">Ratings</Typography>
-                <Rating name="read-only" value={props.user.rating} readOnly />
+                
             </CardActions>
         </Card>
     );

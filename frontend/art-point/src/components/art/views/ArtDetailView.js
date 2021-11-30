@@ -1,10 +1,9 @@
-import { Button, CardMedia, Grid, Rating, Typography } from "@mui/material";
+import { CardMedia, Grid, Rating, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ChatFormDialog from "../../chat/ChatFormDialog";
 import ArtDeleteDialogForm from "../forms/ArtDeleteDialogForm";
 import ArtEditDialogForm from "../forms/ArtEditDialogForm";

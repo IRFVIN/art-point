@@ -7,8 +7,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
-import { Navigate } from 'react-router';
 import EditIcon from '@mui/icons-material/Edit';
 
 export default function ArtEditDialogForm(props) {

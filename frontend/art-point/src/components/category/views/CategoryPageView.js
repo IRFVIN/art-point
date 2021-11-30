@@ -1,12 +1,8 @@
 // import ArtGridView from "./ArtGridView";
 import ArtGridView from "../../art/views/ArtGridView";
 import { useEffect, useState } from "react";
-import { Button, Container, CssBaseline, IconButton, Input, InputAdornment, Pagination, TextField, Toolbar, Typography } from "@mui/material";
+import { Pagination, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import SearchIcon from '@mui/icons-material/Search';
-import CategoryFilter from "../../UI/CategoryFilter";
-import FilterDrawer from "../../UI/FilterDrawer";
-import { UmbrellaTwoTone } from "@mui/icons-material";
 import { useParams } from "react-router";
 
 const CategoryPageView = (props) => {
@@ -27,7 +23,7 @@ const CategoryPageView = (props) => {
 
     useEffect(() => {
         // let url = props.baseURL + `&page=${currentPage - 1}`;
-        let url = "http://localhost:8080/category/" + params.categoryId + "/arts" + `?page=${currentPage - 1}`;
+        let url = "http://localhost:8080/category/" + params.categoryId + `/arts?page=${currentPage - 1}`;
 
         fetch(url).then(res => {
             return res.json();

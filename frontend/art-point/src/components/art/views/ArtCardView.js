@@ -2,7 +2,6 @@ import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import PreviewIcon from '@mui/icons-material/Preview';
 import { useSelector } from "react-redux";
 import ArtDeleteDialogForm from "../forms/ArtDeleteDialogForm";

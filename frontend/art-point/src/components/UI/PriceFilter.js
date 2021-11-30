@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import { Divider, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 
 function valuetext(value) {
     return `${value}°C`;

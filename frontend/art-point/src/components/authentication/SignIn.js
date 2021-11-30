@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Route, Routes } from 'react-router-dom';
 import { Navigate } from 'react-router';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -17,7 +16,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { login } from '../../store/store';
-import App from '../../App';
 
 function Copyright(props) {
     return (

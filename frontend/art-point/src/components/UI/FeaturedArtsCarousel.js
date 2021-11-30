@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-material-ui-carousel'
 import { Paper, Button } from '@mui/material'
-import CategoryCardView from '../category/views/CategoryCardView';
 import CarouselItem from './CarouselItem';
 
 function FeaturedArtsCarousel(props) {

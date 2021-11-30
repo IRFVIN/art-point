@@ -1,9 +1,7 @@
 import ArtGridView from "./ArtGridView";
 import { useEffect, useState } from "react";
-import { Button, Container, CssBaseline, IconButton, Input, InputAdornment, Pagination, TextField, Toolbar } from "@mui/material";
+import { Pagination, TextField } from "@mui/material";
 import { Box } from "@mui/system";
-import SearchIcon from '@mui/icons-material/Search';
-import CategoryFilter from "../../UI/CategoryFilter";
 import FilterDrawer from "../../UI/FilterDrawer";
 
 const ArtPageView = (props) => {

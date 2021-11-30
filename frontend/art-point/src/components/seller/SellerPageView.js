@@ -1,8 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { Button, Container, CssBaseline, IconButton, Input, InputAdornment, Pagination, TextField, Toolbar } from "@mui/material";
-import { Box } from "@mui/system";
-import SearchIcon from '@mui/icons-material/Search';
+import { Pagination } from "@mui/material";
 import UserGridView from "../user/views/UserGridView";
 
 

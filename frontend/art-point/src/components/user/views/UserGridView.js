@@ -1,5 +1,4 @@
 import { Grid } from "@mui/material";
-import { useEffect, useState } from "react";
 import UserCardView from "./UserCardView";
 
 const UserGridView = (props) => {

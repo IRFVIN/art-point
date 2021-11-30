@@ -1,14 +1,20 @@
-import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { Navigate, useParams } from "react-router";
-import ArtCardView from "../../art/views/ArtCardView";
-import ArtPageView from "../../art/views/ArtPageView";
 import UserArtPageView from "../../art/views/UserArtPageView";
 
 const UserArts = (props) => {
 
-    const [arts, setArts] = useState([]);
+    //const [arts, setArts] = useState([]);
+    const [user, setUser] = useState('');
+    useEffect(() => {
+        const url = "http://localhost:8080/user/" + userId;
+        fetch(url).then(res => {
+            return res.json();
+        }).then(res => {
+            setUser(res);
+        });
+    }, []);
+
     // const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     // const user = useSelector(state => state.auth.user);
     // let userId = null;
@@ -31,7 +37,7 @@ const UserArts = (props) => {
     const baseURL = `http://localhost:8080/user/${userId}/arts?`;
 
     return (
-        <UserArtPageView baseURL={baseURL} />
+        <UserArtPageView baseURL={baseURL} user={user} />
     );
 
     /*

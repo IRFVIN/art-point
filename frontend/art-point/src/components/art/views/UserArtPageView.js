@@ -1,10 +1,7 @@
 import ArtGridView from "./ArtGridView";
 import { useEffect, useState } from "react";
-import { Button, Container, CssBaseline, IconButton, Input, InputAdornment, Pagination, TextField, Toolbar } from "@mui/material";
+import { Pagination, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import SearchIcon from '@mui/icons-material/Search';
-import CategoryFilter from "../../UI/CategoryFilter";
-import FilterDrawer from "../../UI/FilterDrawer";
 
 const UserArtPageView = (props) => {
     const [arts, setArts] = useState(null);
@@ -45,7 +42,7 @@ const UserArtPageView = (props) => {
             {/* <CssBaseline /> */}
 
             <Box>
-
+                <Typography align="center" variant="h4" gutterBottom>{props.user.firstName}'s Art</Typography>
                 <ArtGridView arts={arts} />
                 <Pagination
                     count={totalPages}
