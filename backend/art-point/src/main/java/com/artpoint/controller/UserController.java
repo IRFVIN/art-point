@@ -1,12 +1,10 @@
 package com.artpoint.controller;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import com.artpoint.authentication.JwtResponse;
-import com.artpoint.entity.Art;
 import com.artpoint.entity.Chat;
 import com.artpoint.entity.User;
 import com.artpoint.service.ArtService;

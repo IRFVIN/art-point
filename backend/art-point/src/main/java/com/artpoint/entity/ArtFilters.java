@@ -1,10 +1,8 @@
 package com.artpoint.entity;
 
-import com.artpoint.repository.ArtRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;

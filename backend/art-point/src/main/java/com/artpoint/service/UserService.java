@@ -8,7 +8,6 @@ import java.util.Map;
 import com.artpoint.authentication.AuthenticationService;
 import com.artpoint.authentication.JwtRequest;
 import com.artpoint.authentication.JwtResponse;
-import com.artpoint.entity.Art;
 import com.artpoint.entity.User;
 import com.artpoint.repository.UserRepository;
 

@@ -1,6 +1,5 @@
 package com.artpoint.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import com.artpoint.entity.Art;

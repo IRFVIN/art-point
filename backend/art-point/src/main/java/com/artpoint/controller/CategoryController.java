@@ -3,13 +3,11 @@ package com.artpoint.controller;
 import java.util.List;
 import java.util.Map;
 
-import com.artpoint.entity.Art;
 import com.artpoint.entity.Category;
 import com.artpoint.service.CategoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
