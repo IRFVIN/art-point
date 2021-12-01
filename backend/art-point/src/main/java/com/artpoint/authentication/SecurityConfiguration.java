@@ -69,7 +69,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/categories",
                         "/categories/**",
                         "/category/**",
-                        "/sellers")
+                        "/sellers/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
