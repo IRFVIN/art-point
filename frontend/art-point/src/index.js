@@ -21,6 +21,7 @@ import AccountSettings from './components/user/views/AccountSettings';
 import ArtPageView from './components/art/views/ArtPageView';
 import CategoryPageView from './components/category/views/CategoryPageView';
 import SellerPageView from './components/seller/SellerPageView';
+import CategoryGridView from './components/category/views/CategoryGridView';
 
 let persistor = persistStore(store)
 let server_url = "http://localhost:8080/";
@@ -35,6 +36,7 @@ ReactDOM.render(
               <Route path="/signup" element={<SignUp />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/art" element={<ArtPageView baseURL="http://localhost:8080/arts?" />} />
+              <Route path="/categories" element={<CategoryGridView />} />
               <Route path="/category/:categoryId" element={<CategoryPageView />} />
               <Route path="/art/create" element={<ArtCreateForm />} />
               <Route path="art/:artId" element={<ArtDetailView />} />

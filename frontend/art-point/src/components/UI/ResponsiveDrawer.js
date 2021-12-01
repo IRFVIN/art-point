@@ -56,7 +56,7 @@ function ResponsiveDrawer(props) {
 
                 <ListItem
                     component={Link}
-                    to="/art"
+                    to="/categories"
                 >
                     <ListItemIcon>
                         <CategoryIcon />
@@ -69,7 +69,7 @@ function ResponsiveDrawer(props) {
             <Typography variant="h6" align="center" color="textPrimary">Artists</Typography>
             <List>
 
-                 <ListItem
+                <ListItem
                     component={Link}
                     to="/sellers"
                 >
