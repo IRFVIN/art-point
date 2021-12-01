@@ -13,7 +13,7 @@ const CategoryGridView = () => {
             setCategories(res);
         })
 
-    }, [categories]);
+    }, []);
 
     if (!categories) {
         return <div>loading</div>;
